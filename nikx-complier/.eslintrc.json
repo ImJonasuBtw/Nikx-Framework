@@ -1,0 +1,23 @@
+{
+    "env": {
+        "browser": false,
+        "jest": true,
+        "node": true
+    },
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["@typescript-eslint"],
+    "root": true,
+    "extends": [
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "rules": {
+        "comma-dangle": [ "error", "never" ],
+        "indent": [ "error", 4, { "SwitchCase": 1 } ],
+        "linebreak-style": [ "error", "unix" ],
+        "no-console": "off",
+        "no-trailing-spaces": "error",
+        "no-undef": "error",
+        "quotes": [ "error", "single" ],
+        "semi": [ "error", "never" ]
+    }
+}
