@@ -1,29 +1,29 @@
-// Generated from antlr/Nikx.g4 by ANTLR 4.9.0-SNAPSHOT
+// Generated from antlr/Nikx.g4 by ANTLR 4.13.2
+
+import {ParseTreeListener} from "antlr4";
 
 
-import { ParseTreeListener } from "antlr4ts/tree/ParseTreeListener";
-
-import { ProgramContext } from "./NikxParser";
-import { StatementContext } from "./NikxParser";
-import { VariableDeclarationContext } from "./NikxParser";
-import { FunctionDeclarationContext } from "./NikxParser";
-import { ParameterListContext } from "./NikxParser";
-import { BlockContext } from "./NikxParser";
-import { ExpressionStatementContext } from "./NikxParser";
-import { FunctionCallContext } from "./NikxParser";
-import { ArgumentListContext } from "./NikxParser";
-import { LiteralContext } from "./NikxParser";
-import { JsxElementContext } from "./NikxParser";
-import { JsxNormalElementContext } from "./NikxParser";
-import { JsxSelfClosingElementContext } from "./NikxParser";
-import { JsxContentContext } from "./NikxParser";
+import { ProgramContext } from "./NikxParser.js";
+import { StatementContext } from "./NikxParser.js";
+import { VariableDeclarationContext } from "./NikxParser.js";
+import { FunctionDeclarationContext } from "./NikxParser.js";
+import { ParameterListContext } from "./NikxParser.js";
+import { BlockContext } from "./NikxParser.js";
+import { ExpressionStatementContext } from "./NikxParser.js";
+import { FunctionCallContext } from "./NikxParser.js";
+import { ArgumentListContext } from "./NikxParser.js";
+import { LiteralContext } from "./NikxParser.js";
+import { JsxElementContext } from "./NikxParser.js";
+import { JsxNormalElementContext } from "./NikxParser.js";
+import { JsxSelfClosingElementContext } from "./NikxParser.js";
+import { JsxContentContext } from "./NikxParser.js";
 
 
 /**
  * This interface defines a complete listener for a parse tree produced by
  * `NikxParser`.
  */
-export interface NikxListener extends ParseTreeListener {
+export default class NikxListener extends ParseTreeListener {
 	/**
 	 * Enter a parse tree produced by `NikxParser.program`.
 	 * @param ctx the parse tree
@@ -34,7 +34,6 @@ export interface NikxListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitProgram?: (ctx: ProgramContext) => void;
-
 	/**
 	 * Enter a parse tree produced by `NikxParser.statement`.
 	 * @param ctx the parse tree
@@ -45,7 +44,6 @@ export interface NikxListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitStatement?: (ctx: StatementContext) => void;
-
 	/**
 	 * Enter a parse tree produced by `NikxParser.variableDeclaration`.
 	 * @param ctx the parse tree
@@ -56,7 +54,6 @@ export interface NikxListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitVariableDeclaration?: (ctx: VariableDeclarationContext) => void;
-
 	/**
 	 * Enter a parse tree produced by `NikxParser.functionDeclaration`.
 	 * @param ctx the parse tree
@@ -67,7 +64,6 @@ export interface NikxListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitFunctionDeclaration?: (ctx: FunctionDeclarationContext) => void;
-
 	/**
 	 * Enter a parse tree produced by `NikxParser.parameterList`.
 	 * @param ctx the parse tree
@@ -78,7 +74,6 @@ export interface NikxListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitParameterList?: (ctx: ParameterListContext) => void;
-
 	/**
 	 * Enter a parse tree produced by `NikxParser.block`.
 	 * @param ctx the parse tree
@@ -89,7 +84,6 @@ export interface NikxListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitBlock?: (ctx: BlockContext) => void;
-
 	/**
 	 * Enter a parse tree produced by `NikxParser.expressionStatement`.
 	 * @param ctx the parse tree
@@ -100,7 +94,6 @@ export interface NikxListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitExpressionStatement?: (ctx: ExpressionStatementContext) => void;
-
 	/**
 	 * Enter a parse tree produced by `NikxParser.functionCall`.
 	 * @param ctx the parse tree
@@ -111,7 +104,6 @@ export interface NikxListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitFunctionCall?: (ctx: FunctionCallContext) => void;
-
 	/**
 	 * Enter a parse tree produced by `NikxParser.argumentList`.
 	 * @param ctx the parse tree
@@ -122,7 +114,6 @@ export interface NikxListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitArgumentList?: (ctx: ArgumentListContext) => void;
-
 	/**
 	 * Enter a parse tree produced by `NikxParser.literal`.
 	 * @param ctx the parse tree
@@ -133,7 +124,6 @@ export interface NikxListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitLiteral?: (ctx: LiteralContext) => void;
-
 	/**
 	 * Enter a parse tree produced by `NikxParser.jsxElement`.
 	 * @param ctx the parse tree
@@ -144,7 +134,6 @@ export interface NikxListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitJsxElement?: (ctx: JsxElementContext) => void;
-
 	/**
 	 * Enter a parse tree produced by `NikxParser.jsxNormalElement`.
 	 * @param ctx the parse tree
@@ -155,7 +144,6 @@ export interface NikxListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitJsxNormalElement?: (ctx: JsxNormalElementContext) => void;
-
 	/**
 	 * Enter a parse tree produced by `NikxParser.jsxSelfClosingElement`.
 	 * @param ctx the parse tree
@@ -166,7 +154,6 @@ export interface NikxListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitJsxSelfClosingElement?: (ctx: JsxSelfClosingElementContext) => void;
-
 	/**
 	 * Enter a parse tree produced by `NikxParser.jsxContent`.
 	 * @param ctx the parse tree
