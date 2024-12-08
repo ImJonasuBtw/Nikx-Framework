@@ -1,7 +1,7 @@
 import {CharStream, CommonTokenStream} from 'antlr4'
-import NikxLexer from '../generated/NikxLexer'
-import NikxParser from '../generated/NikxParser'
-import NikxVisitorImpl from './NikxVisitorImpl'
+import NikxLexer from '../generated/NikxLexer.js'
+import NikxParser from '../generated/NikxParser.js'
+import NikxVisitorImpl from './NikxVisitorImpl.js'
 
 function parseText(input: string) {
     const chars = new CharStream(input)

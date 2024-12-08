@@ -1,5 +1,5 @@
-import NikxVisitor from '../generated/NikxVisitor'
-import {VariableDeclarationContext} from '../generated/NikxParser'
+import NikxVisitor from '../generated/NikxVisitor.js'
+import {VariableDeclarationContext} from '../generated/NikxParser.js'
 
 export default class NikxVisitorImpl extends NikxVisitor<string> {
 
