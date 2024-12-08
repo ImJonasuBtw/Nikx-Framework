@@ -1,22 +1,18 @@
 {
-    "name": "nikx-vite-plugin",
-    "version": "1.0.0",
+    "name": "ts-template-package",
+    "version": "1.2.0",
     "private": true,
-    "author": "Jonas Nikolopoulos",
+    "author": "Lars Willemsens",
     "license": "MIT",
     "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "type": "module",
     "devDependencies": {
-        "@types/jest": "^29.5.1",
-        "@typescript-eslint/eslint-plugin": "^5.59.6",
-        "@typescript-eslint/parser": "^5.59.6",
-        "eslint": "^8.41.0",
-        "jest": "^29.5.0",
-        "ts-jest": "^29.1.0",
-        "typescript": "^5.0.4"
+        "typescript": "^5.6.2",
+        "vitest": "^2.1.1"
     },
     "scripts": {
         "build": "tsc",
-        "start": "node dist/index.js",
-        "test": "jest"
+        "test": "vitest --run"
     }
 }

@@ -1,3 +1,7 @@
-import { f } from './function'
+import { forty } from './module'
 
-console.log(`The answer is ${f()}.`)
+function f(): number {
+    return forty() + 2
+}
+
+export { f }
