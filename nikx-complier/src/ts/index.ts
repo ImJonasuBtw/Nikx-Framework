@@ -15,4 +15,4 @@ function parseText(input: string) {
     console.log(result)
 }
 
-parseText('var x = 1')
+parseText('var x = 1;')

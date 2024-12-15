@@ -61,12 +61,17 @@ jsxSelfClosingElement
 jsxContent
     : jsxElement
     | StringLiteral
-    | CharacterData
     ;
 
 
 // Lexer Rules
+
+// Keywords
+VAR                 : 'var' ;
+FUN                 : 'fun' ;
+
 BooleanLiteral      : 'true' | 'false' ;
+
 
 NumberLiteral
     : Digit+ ( '.' Digit+ )?
@@ -80,17 +85,11 @@ fragment EscapeSequence
     : '\\' [btnfr"'\\]
     ;
 
-CharacterData
-    : ~[<>{}]+
-    ;
 
 Identifier
     : Letter ( Letter | Digit | '_' )*
     ;
 
-// Keywords
-VAR                 : 'var' ;
-FUN                 : 'fun' ;
 
 // Operators and Symbols
 SEMICOLON           : ';' ;

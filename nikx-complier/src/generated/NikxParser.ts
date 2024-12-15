@@ -21,25 +21,24 @@ type int = number;
 export default class NikxParser extends Parser {
 	public static readonly T__0 = 1;
 	public static readonly T__1 = 2;
-	public static readonly BooleanLiteral = 3;
-	public static readonly NumberLiteral = 4;
-	public static readonly StringLiteral = 5;
-	public static readonly CharacterData = 6;
-	public static readonly Identifier = 7;
-	public static readonly VAR = 8;
-	public static readonly FUN = 9;
-	public static readonly SEMICOLON = 10;
-	public static readonly COMMA = 11;
-	public static readonly ASSIGN = 12;
-	public static readonly LPAREN = 13;
-	public static readonly RPAREN = 14;
-	public static readonly LBRACE = 15;
-	public static readonly RBRACE = 16;
-	public static readonly LT = 17;
-	public static readonly GT = 18;
-	public static readonly SLASH = 19;
-	public static readonly WS = 20;
-	public static readonly COMMENT = 21;
+	public static readonly VAR = 3;
+	public static readonly FUN = 4;
+	public static readonly BooleanLiteral = 5;
+	public static readonly NumberLiteral = 6;
+	public static readonly StringLiteral = 7;
+	public static readonly Identifier = 8;
+	public static readonly SEMICOLON = 9;
+	public static readonly COMMA = 10;
+	public static readonly ASSIGN = 11;
+	public static readonly LPAREN = 12;
+	public static readonly RPAREN = 13;
+	public static readonly LBRACE = 14;
+	public static readonly RBRACE = 15;
+	public static readonly LT = 16;
+	public static readonly GT = 17;
+	public static readonly SLASH = 18;
+	public static readonly WS = 19;
+	public static readonly COMMENT = 20;
 	public static override readonly EOF = Token.EOF;
 	public static readonly RULE_program = 0;
 	public static readonly RULE_statement = 1;
@@ -56,22 +55,21 @@ export default class NikxParser extends Parser {
 	public static readonly RULE_jsxSelfClosingElement = 12;
 	public static readonly RULE_jsxContent = 13;
 	public static readonly literalNames: (string | null)[] = [ null, "'</'", 
-                                                            "'/>'", null, 
+                                                            "'/>'", "'var'", 
+                                                            "'fun'", null, 
                                                             null, null, 
-                                                            null, null, 
-                                                            "'var'", "'fun'", 
-                                                            "';'", "','", 
-                                                            "'='", "'('", 
-                                                            "')'", "'{'", 
-                                                            "'}'", "'<'", 
-                                                            "'>'", "'/'" ];
+                                                            null, "';'", 
+                                                            "','", "'='", 
+                                                            "'('", "')'", 
+                                                            "'{'", "'}'", 
+                                                            "'<'", "'>'", 
+                                                            "'/'" ];
 	public static readonly symbolicNames: (string | null)[] = [ null, null, 
-                                                             null, "BooleanLiteral", 
+                                                             null, "VAR", 
+                                                             "FUN", "BooleanLiteral", 
                                                              "NumberLiteral", 
                                                              "StringLiteral", 
-                                                             "CharacterData", 
                                                              "Identifier", 
-                                                             "VAR", "FUN", 
                                                              "SEMICOLON", 
                                                              "COMMA", "ASSIGN", 
                                                              "LPAREN", "RPAREN", 
@@ -111,7 +109,7 @@ export default class NikxParser extends Parser {
 			this.state = 31;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 132992) !== 0)) {
+			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 66328) !== 0)) {
 				{
 				{
 				this.state = 28;
@@ -148,35 +146,35 @@ export default class NikxParser extends Parser {
 			this.state = 41;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
-			case 8:
+			case 3:
 				this.enterOuterAlt(localctx, 1);
 				{
 				this.state = 36;
 				this.variableDeclaration();
 				}
 				break;
-			case 9:
+			case 4:
 				this.enterOuterAlt(localctx, 2);
 				{
 				this.state = 37;
 				this.functionDeclaration();
 				}
 				break;
-			case 7:
+			case 8:
 				this.enterOuterAlt(localctx, 3);
 				{
 				this.state = 38;
 				this.expressionStatement();
 				}
 				break;
-			case 17:
+			case 16:
 				this.enterOuterAlt(localctx, 4);
 				{
 				this.state = 39;
 				this.jsxElement();
 				}
 				break;
-			case 10:
+			case 9:
 				this.enterOuterAlt(localctx, 5);
 				{
 				this.state = 40;
@@ -216,7 +214,7 @@ export default class NikxParser extends Parser {
 			this.state = 47;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (_la===12) {
+			if (_la===11) {
 				{
 				this.state = 45;
 				this.match(NikxParser.ASSIGN);
@@ -260,7 +258,7 @@ export default class NikxParser extends Parser {
 			this.state = 55;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (_la===7) {
+			if (_la===8) {
 				{
 				this.state = 54;
 				this.parameterList();
@@ -300,7 +298,7 @@ export default class NikxParser extends Parser {
 			this.state = 65;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while (_la===11) {
+			while (_la===10) {
 				{
 				{
 				this.state = 61;
@@ -342,7 +340,7 @@ export default class NikxParser extends Parser {
 			this.state = 72;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 132992) !== 0)) {
+			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 66328) !== 0)) {
 				{
 				{
 				this.state = 69;
@@ -413,7 +411,7 @@ export default class NikxParser extends Parser {
 			this.state = 83;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if ((((_la) & ~0x1F) === 0 && ((1 << _la) & 56) !== 0)) {
+			if ((((_la) & ~0x1F) === 0 && ((1 << _la) & 224) !== 0)) {
 				{
 				this.state = 82;
 				this.argumentList();
@@ -451,7 +449,7 @@ export default class NikxParser extends Parser {
 			this.state = 92;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while (_la===11) {
+			while (_la===10) {
 				{
 				{
 				this.state = 88;
@@ -490,7 +488,7 @@ export default class NikxParser extends Parser {
 			{
 			this.state = 95;
 			_la = this._input.LA(1);
-			if(!((((_la) & ~0x1F) === 0 && ((1 << _la) & 56) !== 0))) {
+			if(!((((_la) & ~0x1F) === 0 && ((1 << _la) & 224) !== 0))) {
 			this._errHandler.recoverInline(this);
 			}
 			else {
@@ -568,7 +566,7 @@ export default class NikxParser extends Parser {
 			this.state = 107;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 131168) !== 0)) {
+			while (_la===7 || _la===16) {
 				{
 				{
 				this.state = 104;
@@ -635,28 +633,21 @@ export default class NikxParser extends Parser {
 		let localctx: JsxContentContext = new JsxContentContext(this, this._ctx, this.state);
 		this.enterRule(localctx, 26, NikxParser.RULE_jsxContent);
 		try {
-			this.state = 121;
+			this.state = 120;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
-			case 17:
+			case 16:
 				this.enterOuterAlt(localctx, 1);
 				{
 				this.state = 118;
 				this.jsxElement();
 				}
 				break;
-			case 5:
+			case 7:
 				this.enterOuterAlt(localctx, 2);
 				{
 				this.state = 119;
 				this.match(NikxParser.StringLiteral);
-				}
-				break;
-			case 6:
-				this.enterOuterAlt(localctx, 3);
-				{
-				this.state = 120;
-				this.match(NikxParser.CharacterData);
 				}
 				break;
 			default:
@@ -678,7 +669,7 @@ export default class NikxParser extends Parser {
 		return localctx;
 	}
 
-	public static readonly _serializedATN: number[] = [4,1,21,124,2,0,7,0,2,
+	public static readonly _serializedATN: number[] = [4,1,20,123,2,0,7,0,2,
 	1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,7,7,2,8,7,8,2,9,7,9,2,
 	10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,1,0,5,0,30,8,0,10,0,12,0,33,9,0,1,
 	0,1,0,1,1,1,1,1,1,1,1,1,1,3,1,42,8,1,1,2,1,2,1,2,1,2,3,2,48,8,2,1,2,1,2,
@@ -686,34 +677,34 @@ export default class NikxParser extends Parser {
 	67,9,4,1,5,1,5,5,5,71,8,5,10,5,12,5,74,9,5,1,5,1,5,1,6,1,6,1,6,1,7,1,7,
 	1,7,3,7,84,8,7,1,7,1,7,1,8,1,8,1,8,5,8,91,8,8,10,8,12,8,94,9,8,1,9,1,9,
 	1,10,1,10,3,10,100,8,10,1,11,1,11,1,11,1,11,5,11,106,8,11,10,11,12,11,109,
-	9,11,1,11,1,11,1,11,1,11,1,12,1,12,1,12,1,12,1,13,1,13,1,13,3,13,122,8,
-	13,1,13,0,0,14,0,2,4,6,8,10,12,14,16,18,20,22,24,26,0,1,1,0,3,5,124,0,31,
-	1,0,0,0,2,41,1,0,0,0,4,43,1,0,0,0,6,51,1,0,0,0,8,60,1,0,0,0,10,68,1,0,0,
-	0,12,77,1,0,0,0,14,80,1,0,0,0,16,87,1,0,0,0,18,95,1,0,0,0,20,99,1,0,0,0,
-	22,101,1,0,0,0,24,114,1,0,0,0,26,121,1,0,0,0,28,30,3,2,1,0,29,28,1,0,0,
-	0,30,33,1,0,0,0,31,29,1,0,0,0,31,32,1,0,0,0,32,34,1,0,0,0,33,31,1,0,0,0,
-	34,35,5,0,0,1,35,1,1,0,0,0,36,42,3,4,2,0,37,42,3,6,3,0,38,42,3,12,6,0,39,
-	42,3,20,10,0,40,42,5,10,0,0,41,36,1,0,0,0,41,37,1,0,0,0,41,38,1,0,0,0,41,
-	39,1,0,0,0,41,40,1,0,0,0,42,3,1,0,0,0,43,44,5,8,0,0,44,47,5,7,0,0,45,46,
-	5,12,0,0,46,48,3,18,9,0,47,45,1,0,0,0,47,48,1,0,0,0,48,49,1,0,0,0,49,50,
-	5,10,0,0,50,5,1,0,0,0,51,52,5,9,0,0,52,53,5,7,0,0,53,55,5,13,0,0,54,56,
-	3,8,4,0,55,54,1,0,0,0,55,56,1,0,0,0,56,57,1,0,0,0,57,58,5,14,0,0,58,59,
-	3,10,5,0,59,7,1,0,0,0,60,65,5,7,0,0,61,62,5,11,0,0,62,64,5,7,0,0,63,61,
-	1,0,0,0,64,67,1,0,0,0,65,63,1,0,0,0,65,66,1,0,0,0,66,9,1,0,0,0,67,65,1,
-	0,0,0,68,72,5,15,0,0,69,71,3,2,1,0,70,69,1,0,0,0,71,74,1,0,0,0,72,70,1,
-	0,0,0,72,73,1,0,0,0,73,75,1,0,0,0,74,72,1,0,0,0,75,76,5,16,0,0,76,11,1,
-	0,0,0,77,78,3,14,7,0,78,79,5,10,0,0,79,13,1,0,0,0,80,81,5,7,0,0,81,83,5,
-	13,0,0,82,84,3,16,8,0,83,82,1,0,0,0,83,84,1,0,0,0,84,85,1,0,0,0,85,86,5,
-	14,0,0,86,15,1,0,0,0,87,92,3,18,9,0,88,89,5,11,0,0,89,91,3,18,9,0,90,88,
-	1,0,0,0,91,94,1,0,0,0,92,90,1,0,0,0,92,93,1,0,0,0,93,17,1,0,0,0,94,92,1,
-	0,0,0,95,96,7,0,0,0,96,19,1,0,0,0,97,100,3,24,12,0,98,100,3,22,11,0,99,
-	97,1,0,0,0,99,98,1,0,0,0,100,21,1,0,0,0,101,102,5,17,0,0,102,103,5,7,0,
-	0,103,107,5,18,0,0,104,106,3,26,13,0,105,104,1,0,0,0,106,109,1,0,0,0,107,
-	105,1,0,0,0,107,108,1,0,0,0,108,110,1,0,0,0,109,107,1,0,0,0,110,111,5,1,
-	0,0,111,112,5,7,0,0,112,113,5,18,0,0,113,23,1,0,0,0,114,115,5,17,0,0,115,
-	116,5,7,0,0,116,117,5,2,0,0,117,25,1,0,0,0,118,122,3,20,10,0,119,122,5,
-	5,0,0,120,122,5,6,0,0,121,118,1,0,0,0,121,119,1,0,0,0,121,120,1,0,0,0,122,
-	27,1,0,0,0,11,31,41,47,55,65,72,83,92,99,107,121];
+	9,11,1,11,1,11,1,11,1,11,1,12,1,12,1,12,1,12,1,13,1,13,3,13,121,8,13,1,
+	13,0,0,14,0,2,4,6,8,10,12,14,16,18,20,22,24,26,0,1,1,0,5,7,122,0,31,1,0,
+	0,0,2,41,1,0,0,0,4,43,1,0,0,0,6,51,1,0,0,0,8,60,1,0,0,0,10,68,1,0,0,0,12,
+	77,1,0,0,0,14,80,1,0,0,0,16,87,1,0,0,0,18,95,1,0,0,0,20,99,1,0,0,0,22,101,
+	1,0,0,0,24,114,1,0,0,0,26,120,1,0,0,0,28,30,3,2,1,0,29,28,1,0,0,0,30,33,
+	1,0,0,0,31,29,1,0,0,0,31,32,1,0,0,0,32,34,1,0,0,0,33,31,1,0,0,0,34,35,5,
+	0,0,1,35,1,1,0,0,0,36,42,3,4,2,0,37,42,3,6,3,0,38,42,3,12,6,0,39,42,3,20,
+	10,0,40,42,5,9,0,0,41,36,1,0,0,0,41,37,1,0,0,0,41,38,1,0,0,0,41,39,1,0,
+	0,0,41,40,1,0,0,0,42,3,1,0,0,0,43,44,5,3,0,0,44,47,5,8,0,0,45,46,5,11,0,
+	0,46,48,3,18,9,0,47,45,1,0,0,0,47,48,1,0,0,0,48,49,1,0,0,0,49,50,5,9,0,
+	0,50,5,1,0,0,0,51,52,5,4,0,0,52,53,5,8,0,0,53,55,5,12,0,0,54,56,3,8,4,0,
+	55,54,1,0,0,0,55,56,1,0,0,0,56,57,1,0,0,0,57,58,5,13,0,0,58,59,3,10,5,0,
+	59,7,1,0,0,0,60,65,5,8,0,0,61,62,5,10,0,0,62,64,5,8,0,0,63,61,1,0,0,0,64,
+	67,1,0,0,0,65,63,1,0,0,0,65,66,1,0,0,0,66,9,1,0,0,0,67,65,1,0,0,0,68,72,
+	5,14,0,0,69,71,3,2,1,0,70,69,1,0,0,0,71,74,1,0,0,0,72,70,1,0,0,0,72,73,
+	1,0,0,0,73,75,1,0,0,0,74,72,1,0,0,0,75,76,5,15,0,0,76,11,1,0,0,0,77,78,
+	3,14,7,0,78,79,5,9,0,0,79,13,1,0,0,0,80,81,5,8,0,0,81,83,5,12,0,0,82,84,
+	3,16,8,0,83,82,1,0,0,0,83,84,1,0,0,0,84,85,1,0,0,0,85,86,5,13,0,0,86,15,
+	1,0,0,0,87,92,3,18,9,0,88,89,5,10,0,0,89,91,3,18,9,0,90,88,1,0,0,0,91,94,
+	1,0,0,0,92,90,1,0,0,0,92,93,1,0,0,0,93,17,1,0,0,0,94,92,1,0,0,0,95,96,7,
+	0,0,0,96,19,1,0,0,0,97,100,3,24,12,0,98,100,3,22,11,0,99,97,1,0,0,0,99,
+	98,1,0,0,0,100,21,1,0,0,0,101,102,5,16,0,0,102,103,5,8,0,0,103,107,5,17,
+	0,0,104,106,3,26,13,0,105,104,1,0,0,0,106,109,1,0,0,0,107,105,1,0,0,0,107,
+	108,1,0,0,0,108,110,1,0,0,0,109,107,1,0,0,0,110,111,5,1,0,0,111,112,5,8,
+	0,0,112,113,5,17,0,0,113,23,1,0,0,0,114,115,5,16,0,0,115,116,5,8,0,0,116,
+	117,5,2,0,0,117,25,1,0,0,0,118,121,3,20,10,0,119,121,5,7,0,0,120,118,1,
+	0,0,0,120,119,1,0,0,0,121,27,1,0,0,0,11,31,41,47,55,65,72,83,92,99,107,
+	120];
 
 	private static __ATN: ATN;
 	public static get _ATN(): ATN {
@@ -1269,9 +1260,6 @@ export class JsxContentContext extends ParserRuleContext {
 	}
 	public StringLiteral(): TerminalNode {
 		return this.getToken(NikxParser.StringLiteral, 0);
-	}
-	public CharacterData(): TerminalNode {
-		return this.getToken(NikxParser.CharacterData, 0);
 	}
     public get ruleIndex(): number {
     	return NikxParser.RULE_jsxContent;
