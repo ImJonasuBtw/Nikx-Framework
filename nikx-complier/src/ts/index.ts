@@ -15,4 +15,5 @@ function parseText(input: string) {
     console.log(result)
 }
 
-parseText('var x = 1;')
+parseText('var x = 1;' +
+    'var x = true;'+'fun test() { return 1; }')

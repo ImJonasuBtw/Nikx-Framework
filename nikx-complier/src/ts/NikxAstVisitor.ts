@@ -1,16 +1,26 @@
 import NikxVisitor from '../generated/NikxVisitor'
 import Node from '../nodes/Node'
-import {LiteralContext, ProgramContext, StatementContext, VariableDeclarationContext} from '../generated/NikxParser'
+import {
+    BlockContext,
+    FunctionDeclarationContext,
+    LiteralContext, ParameterListContext,
+    ProgramContext,
+    StatementContext,
+    VariableDeclarationContext
+} from '../generated/NikxParser'
 import VariableDeclarationNode from '../nodes/VariableDeclarationNode'
-import LiteralNode from "../nodes/LieralNode";
+import LiteralNode from "../nodes/LiteralNode";
 import ProgramNode from "../nodes/ProgramNode";
 import StatementNode from "../nodes/StatementNode";
+import FunctionDeclarationNode from "../nodes/FunctionDeclarationNode";
+import ParameterListNode from "../nodes/ParameterListNode";
+import BlockNode from "../nodes/BlockNode";
 
 export default class NikxAstVisitor extends NikxVisitor<Node> {
 
 
     visitProgram = (ctx: ProgramContext): ProgramNode => {
-        const programNode: ProgramNode = { statements: [], type: 'Program' };
+        const programNode: ProgramNode = {statements: [], type: 'Program'};
         const statementList = ctx.statement_list();
         if (statementList) {
             statementList.forEach((statement: StatementContext) => {
@@ -25,7 +35,11 @@ export default class NikxAstVisitor extends NikxVisitor<Node> {
 
     visitStatement = (ctx: StatementContext): StatementNode | null => {
         if (ctx.variableDeclaration()) {
-            return { type: 'Statement', value: this.visitVariableDeclaration(ctx.variableDeclaration()) };
+            return {type: 'Statement', value: this.visitVariableDeclaration(ctx.variableDeclaration())};
+        }
+
+        if (ctx.functionDeclaration()) {
+            return {type: 'Statement', value: this.visitFunctionDeclaration(ctx.functionDeclaration())};
         }
         return null;
     }
@@ -36,6 +50,52 @@ export default class NikxAstVisitor extends NikxVisitor<Node> {
             type: 'VariableDeclaration',
             name: ctx.Identifier().getText(),
             value: literalNode ? literalNode.value : undefined
+        }
+    }
+
+
+    visitParameterList = (ctx: ParameterListContext): ParameterListNode => {
+        const parameterListNode: ParameterListNode = {
+            type: 'ParameterList',
+            parameters: []
+        }
+
+        const idTokens = ctx.Identifier_list();
+        idTokens.forEach(idToken => {
+            parameterListNode.parameters.push(idToken.getText());
+        });
+
+        return parameterListNode;
+    }
+
+    visitBlock = (ctx: BlockContext): BlockNode => {
+        const stmts: StatementNode[] = [];
+        const statements = ctx.statement_list();
+
+        statements.forEach(stmtCtx => {
+            const statementNode = this.visitStatement(stmtCtx);
+            if (statementNode) {
+                stmts.push(statementNode);
+            }
+        });
+
+        return {
+            type: 'Block',
+            statements: stmts
+        }
+    }
+
+    visitFunctionDeclaration = (ctx: FunctionDeclarationContext): FunctionDeclarationNode => {
+        const parameters = ctx.parameterList()
+            ? this.visitParameterList(ctx.parameterList()!)
+            : {type: 'ParameterList', parameters: []}
+
+        const body = this.visitBlock(ctx.block())
+        return {
+            type: 'FunctionDeclaration',
+            name: ctx.Identifier().getText(),
+            parameters: parameters.parameters,
+            body: body
         }
     }
 
@@ -50,6 +110,6 @@ export default class NikxAstVisitor extends NikxVisitor<Node> {
         } else {
             throw new Error('Unknown literal type');
         }
-        return { type: 'Literal', value };
+        return {type: 'Literal', value};
     }
 }
