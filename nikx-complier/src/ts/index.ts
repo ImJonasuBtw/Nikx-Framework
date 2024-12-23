@@ -25,5 +25,11 @@ function loader(sourceCode: string): string {
 
 const input = `
 var x = 42;
+var y = "hello";
+var z = true;
+
+fun hello(name) {
+  var greeting = "Hi";
+}
 `;
 console.log(loader(input));
