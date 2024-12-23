@@ -1,4 +1,3 @@
-import {VariableDeclarationContext} from '../generated/NikxParser.js'
 import Node from '../nodes/Node'
 import ProgramNode from "../nodes/ProgramNode";
 import VariableDeclarationNode from "../nodes/VariableDeclarationNode";

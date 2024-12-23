@@ -15,21 +15,11 @@ function parseText(input: string) {
     return visitor.visitProgram(tree)
 }
 
-export {parseText}
 
-function loader(sourceCode: string): string {
+function compile(sourceCode: string): string {
     const ast =parseText(sourceCode);
     const visitor = new NikxVisitorImpl()
     return visitor.generate(ast);
 }
 
-const input = `
-var x = 42;
-var y = "hello";
-var z = true;
-
-fun hello(name) {
-  var greeting = "Hi";
-}
-`;
-console.log(loader(input));
+export {compile}
