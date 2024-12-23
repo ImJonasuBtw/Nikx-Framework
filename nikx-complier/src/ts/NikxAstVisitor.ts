@@ -1,4 +1,4 @@
-import NikxVisitor from '../generated/NikxVisitor'
+import NikxVisitor from '../generated/NikxVisitor.js'
 import Node from '../nodes/Node'
 import {
     BlockContext,
@@ -7,7 +7,7 @@ import {
     ProgramContext,
     StatementContext,
     VariableDeclarationContext
-} from '../generated/NikxParser'
+} from '../generated/NikxParser.js'
 import VariableDeclarationNode from '../nodes/VariableDeclarationNode'
 import LiteralNode from "../nodes/LiteralNode";
 import ProgramNode from "../nodes/ProgramNode";
@@ -86,9 +86,9 @@ export default class NikxAstVisitor extends NikxVisitor<Node> {
     }
 
     visitFunctionDeclaration = (ctx: FunctionDeclarationContext): FunctionDeclarationNode => {
-        const parameters = ctx.parameterList()
+        const parameters: ParameterListNode = ctx.parameterList()
             ? this.visitParameterList(ctx.parameterList()!)
-            : {type: 'ParameterList', parameters: []}
+            : { type: 'ParameterList', parameters: [] };
 
         const body = this.visitBlock(ctx.block())
         return {

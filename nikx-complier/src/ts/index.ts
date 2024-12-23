@@ -1,7 +1,8 @@
 import {CharStream, CommonTokenStream} from 'antlr4'
 import NikxLexer from '../generated/NikxLexer.js'
 import NikxParser from '../generated/NikxParser.js'
-import NikxVisitorImpl from './NikxVisitorImpl.js'
+import NikxAstVisitor from "./NikxAstVisitor.js";
+import NikxVisitorImpl from "./NikxVisitorImpl.js";
 
 function parseText(input: string) {
     const chars = new CharStream(input)
@@ -10,10 +11,19 @@ function parseText(input: string) {
     const parser = new NikxParser(tokens)
     const tree = parser.program()
 
-    const visitor = new NikxVisitorImpl()
-    const result = visitor.visit(tree)
-    console.log(result)
+    const visitor = new NikxAstVisitor()
+    return visitor.visitProgram(tree)
 }
 
-parseText('var x = 1;' +
-    'var x = true;'+'fun test() { return 1; }')
+export {parseText}
+
+function loader(sourceCode: string): string {
+    const ast =parseText(sourceCode);
+    const visitor = new NikxVisitorImpl()
+    return visitor.generate(ast);
+}
+
+const input = `
+var x = 42;
+`;
+console.log(loader(input));
