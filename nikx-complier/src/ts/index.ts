@@ -1,6 +1,6 @@
 import {CharStream, CommonTokenStream} from 'antlr4'
-import NikxLexer from '../generated/NikxLexer.js'
-import NikxParser from '../generated/NikxParser.js'
+import NikxLexer from './generated/NikxLexer.js'
+import NikxParser from './generated/NikxParser.js'
 import NikxAstVisitor from "./NikxAstVisitor.js";
 import NikxVisitorImpl from "./NikxVisitorImpl.js";
 

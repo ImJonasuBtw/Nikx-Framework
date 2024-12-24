@@ -14,7 +14,7 @@ import {
 export default class NikxLexer extends Lexer {
 	public static readonly T__0 = 1;
 	public static readonly T__1 = 2;
-	public static readonly VAR = 3;
+	public static readonly BOX = 3;
 	public static readonly FUN = 4;
 	public static readonly BooleanLiteral = 5;
 	public static readonly NumberLiteral = 6;
@@ -36,7 +36,7 @@ export default class NikxLexer extends Lexer {
 
 	public static readonly channelNames: string[] = [ "DEFAULT_TOKEN_CHANNEL", "HIDDEN" ];
 	public static readonly literalNames: (string | null)[] = [ null, "'</'", 
-                                                            "'/>'", "'var'", 
+                                                            "'/>'", "'box'", 
                                                             "'fun'", null, 
                                                             null, null, 
                                                             null, "';'", 
@@ -46,7 +46,7 @@ export default class NikxLexer extends Lexer {
                                                             "'<'", "'>'", 
                                                             "'/'" ];
 	public static readonly symbolicNames: (string | null)[] = [ null, null, 
-                                                             null, "VAR", 
+                                                             null, "BOX", 
                                                              "FUN", "BooleanLiteral", 
                                                              "NumberLiteral", 
                                                              "StringLiteral", 
@@ -61,7 +61,7 @@ export default class NikxLexer extends Lexer {
 	public static readonly modeNames: string[] = [ "DEFAULT_MODE", ];
 
 	public static readonly ruleNames: string[] = [
-		"T__0", "T__1", "VAR", "FUN", "BooleanLiteral", "NumberLiteral", "StringLiteral", 
+		"T__0", "T__1", "BOX", "FUN", "BooleanLiteral", "NumberLiteral", "StringLiteral", 
 		"EscapeSequence", "Identifier", "SEMICOLON", "COMMA", "ASSIGN", "LPAREN", 
 		"RPAREN", "LBRACE", "RBRACE", "LT", "GT", "SLASH", "Letter", "Digit", 
 		"WS", "COMMENT",
@@ -109,7 +109,7 @@ export default class NikxLexer extends Lexer {
 	0,0,0,27,115,1,0,0,0,29,117,1,0,0,0,31,119,1,0,0,0,33,121,1,0,0,0,35,123,
 	1,0,0,0,37,125,1,0,0,0,39,127,1,0,0,0,41,129,1,0,0,0,43,132,1,0,0,0,45,
 	138,1,0,0,0,47,48,5,60,0,0,48,49,5,47,0,0,49,2,1,0,0,0,50,51,5,47,0,0,51,
-	52,5,62,0,0,52,4,1,0,0,0,53,54,5,118,0,0,54,55,5,97,0,0,55,56,5,114,0,0,
+	52,5,62,0,0,52,4,1,0,0,0,53,54,5,98,0,0,54,55,5,111,0,0,55,56,5,120,0,0,
 	56,6,1,0,0,0,57,58,5,102,0,0,58,59,5,117,0,0,59,60,5,110,0,0,60,8,1,0,0,
 	0,61,62,5,116,0,0,62,63,5,114,0,0,63,64,5,117,0,0,64,71,5,101,0,0,65,66,
 	5,102,0,0,66,67,5,97,0,0,67,68,5,108,0,0,68,69,5,115,0,0,69,71,5,101,0,

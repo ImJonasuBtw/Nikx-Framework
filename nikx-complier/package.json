@@ -4,8 +4,8 @@
     "private": true,
     "author": "Jonas Nikolopoulos",
     "license": "MIT",
-    "main": "dist/ts/index.js",
-    "types": "dist/ts/index.d.ts",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "type": "module",
     "devDependencies": {
         "@types/node": "^22.10.0",
@@ -16,8 +16,8 @@
     "scripts": {
         "build": "tsc",
         "test": "vitest --run",
-        "start": "node dist/ts/index.js",
-        "generate": "java -jar C:\\antlr\\antlr-4.13.2-complete.jar -Dlanguage=TypeScript -visitor -o src/generated antlr/Nikx.g4"
+        "start": "node dist/index.js",
+        "generate": "java -jar C:\\antlr\\antlr-4.13.2-complete.jar -Dlanguage=TypeScript -visitor -o src/ts/generated antlr/Nikx.g4"
     },
     "dependencies": {
         "antlr4": "^4.13.2"

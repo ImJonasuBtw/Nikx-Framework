@@ -1,6 +1,6 @@
 T__0=1
 T__1=2
-VAR=3
+BOX=3
 FUN=4
 BooleanLiteral=5
 NumberLiteral=6
@@ -20,7 +20,7 @@ WS=19
 COMMENT=20
 '</'=1
 '/>'=2
-'var'=3
+'box'=3
 'fun'=4
 ';'=9
 ','=10

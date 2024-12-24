@@ -4,16 +4,19 @@
     "private": true,
     "author": "Jonas Nikolopoulos",
     "license": "MIT",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
     "type": "module",
     "devDependencies": {
-        "nikx-vite-plugin": "file:../nikx-vite-plugin",
         "typescript": "^5.6.2",
+        "vite": "^5.4.5",
         "vitest": "^2.1.1"
     },
     "scripts": {
-        "build": "tsc",
-        "test": "vitest --run"
+        "build": "vite build",
+        "dev": "vite",
+        "preview": "vite preview",
+        "test": "vitest --run -r test"
+    },
+    "dependencies": {
+        "nikx-vite-plugin": "file:../nikx-vite-plugin"
     }
 }

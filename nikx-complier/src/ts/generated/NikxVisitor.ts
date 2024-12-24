@@ -3,20 +3,20 @@
 import {ParseTreeVisitor} from 'antlr4';
 
 
-import { ProgramContext } from "./NikxParser.js";
-import { StatementContext } from "./NikxParser.js";
-import { VariableDeclarationContext } from "./NikxParser.js";
-import { FunctionDeclarationContext } from "./NikxParser.js";
-import { ParameterListContext } from "./NikxParser.js";
-import { BlockContext } from "./NikxParser.js";
-import { ExpressionStatementContext } from "./NikxParser.js";
-import { FunctionCallContext } from "./NikxParser.js";
-import { ArgumentListContext } from "./NikxParser.js";
-import { LiteralContext } from "./NikxParser.js";
-import { HtmlElementContext } from "./NikxParser.js";
-import { HtmlNormalElementContext } from "./NikxParser.js";
-import { HtmlSelfClosingElementContext } from "./NikxParser.js";
-import { HtmlContentContext } from "./NikxParser.js";
+import { ProgramContext } from "./NikxParser";
+import { StatementContext } from "./NikxParser";
+import { VariableDeclarationContext } from "./NikxParser";
+import { FunctionDeclarationContext } from "./NikxParser";
+import { ParameterListContext } from "./NikxParser";
+import { BlockContext } from "./NikxParser";
+import { ExpressionStatementContext } from "./NikxParser";
+import { FunctionCallContext } from "./NikxParser";
+import { ArgumentListContext } from "./NikxParser";
+import { LiteralContext } from "./NikxParser";
+import { HtmlElementContext } from "./NikxParser";
+import { HtmlNormalElementContext } from "./NikxParser";
+import { HtmlSelfClosingElementContext } from "./NikxParser";
+import { HtmlContentContext } from "./NikxParser";
 
 
 /**

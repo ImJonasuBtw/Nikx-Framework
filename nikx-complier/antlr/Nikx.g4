@@ -12,7 +12,7 @@ statement
     ;
 
 variableDeclaration
-    : 'var' Identifier ( '=' literal )? ';'
+    : 'box' Identifier ( '=' literal )? ';'
     ;
 
 functionDeclaration
@@ -67,7 +67,7 @@ htmlContent
 // Lexer Rules
 
 // Keywords
-VAR                 : 'var' ;
+BOX                 : 'box' ;
 FUN                 : 'fun' ;
 
 BooleanLiteral      : 'true' | 'false' ;

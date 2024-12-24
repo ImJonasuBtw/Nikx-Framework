@@ -1,8 +1,9 @@
-import Node from '../nodes/Node'
-import ProgramNode from "../nodes/ProgramNode";
-import VariableDeclarationNode from "../nodes/VariableDeclarationNode";
-import FunctionDeclarationNode from "../nodes/FunctionDeclarationNode";
-import BlockNode from "../nodes/BlockNode";
+import Node from './nodes/Node'
+import ProgramNode from "./nodes/ProgramNode";
+import VariableDeclarationNode from "./nodes/VariableDeclarationNode";
+import FunctionDeclarationNode from "./nodes/FunctionDeclarationNode";
+import BlockNode from "./nodes/BlockNode";
+import htmlElementNode from "./nodes/htmlElementNode";
 
 export default class NikxVisitorImpl {
 
@@ -26,19 +27,46 @@ export default class NikxVisitorImpl {
                 return this.generateBlock(node as BlockNode);
             case 'StatementSeparator':
                 return ';';
+            case 'htmlElement':
+                return this.generateHtmlElement(node as htmlElementNode);
             default:
                 return `/* Unknown node type: ${node.type} */`;
         }
     }
 
-    private  generateFunctionDecl(node: FunctionDeclarationNode): string {
-        const { name, parameters, body } = node;
+    private generateHtmlElement(node: htmlElementNode): string {
+        const {tag, children, selfClosing} = node;
+
+        if (selfClosing) {
+            return `document.createElement("${tag}")`;
+        }
+
+        const elementVar = `_${tag}_${Math.random().toString(36).substring(7)}`;
+        let output = `const ${elementVar} = document.createElement("${tag}");\n`;
+
+        if (children && children.length > 0) {
+            for (const child of children) {
+                if (typeof child === 'string') {
+                    output += `${elementVar}.appendChild(document.createTextNode(${JSON.stringify(child)}));\n`;
+                } else {
+                    const childElement = this.generateHtmlElement(child);
+                    output += `${elementVar}.appendChild(${childElement});\n`;
+                }
+            }
+        }
+
+        return output + `${elementVar}`;
+    }
+
+
+    private generateFunctionDecl(node: FunctionDeclarationNode): string {
+        const {name, parameters, body} = node;
         const params = parameters.join(', ');
         const bodyCode = this.generateBlock(body);
         return `function ${name}(${params}) ${bodyCode}`;
     }
 
-    private  generateBlock(node: BlockNode): string {
+    private generateBlock(node: BlockNode): string {
         const inner = node.statements.map(stmt => this.generateNode(stmt)).join('\n');
         return `{\n${inner}\n}`;
     }

@@ -1,7 +1,2 @@
-import { forty } from './module.js'
-
-function f(): number {
-    return forty() + 2
-}
-
-export { f }
+import '../css/style.css'
+import '../nikx/index.nikx'

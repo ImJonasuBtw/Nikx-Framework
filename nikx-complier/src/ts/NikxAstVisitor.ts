@@ -1,5 +1,5 @@
-import NikxVisitor from '../generated/NikxVisitor.js'
-import Node from '../nodes/Node'
+import NikxVisitor from './generated/NikxVisitor.js'
+import Node from './nodes/Node'
 import {
     BlockContext,
     FunctionDeclarationContext,
@@ -12,15 +12,15 @@ import {
     ProgramContext,
     StatementContext,
     VariableDeclarationContext
-} from '../generated/NikxParser.js'
-import VariableDeclarationNode from '../nodes/VariableDeclarationNode'
-import LiteralNode from "../nodes/LiteralNode";
-import ProgramNode from "../nodes/ProgramNode";
-import StatementNode from "../nodes/StatementNode";
-import FunctionDeclarationNode from "../nodes/FunctionDeclarationNode";
-import ParameterListNode from "../nodes/ParameterListNode";
-import BlockNode from "../nodes/BlockNode";
-import htmlElementNode from "../nodes/htmlElementNode";
+} from './generated/NikxParser.js'
+import VariableDeclarationNode from './nodes/VariableDeclarationNode'
+import LiteralNode from "./nodes/LiteralNode";
+import ProgramNode from "./nodes/ProgramNode";
+import StatementNode from "./nodes/StatementNode";
+import FunctionDeclarationNode from "./nodes/FunctionDeclarationNode";
+import ParameterListNode from "./nodes/ParameterListNode";
+import BlockNode from "./nodes/BlockNode";
+import htmlElementNode from "./nodes/htmlElementNode";
 
 export default class NikxAstVisitor extends NikxVisitor<Node> {
 

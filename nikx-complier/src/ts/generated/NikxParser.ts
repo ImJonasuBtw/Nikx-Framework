@@ -11,8 +11,8 @@ import {
 	Token, TokenStream,
 	Interval, IntervalSet
 } from 'antlr4';
-import NikxListener from "./NikxListener.js";
-import NikxVisitor from "./NikxVisitor.js";
+import NikxListener from "./NikxListener";
+import NikxVisitor from "./NikxVisitor";
 
 // for running tests with parameters, TODO: discuss strategy for typed parameters in CI
 // eslint-disable-next-line no-unused-vars
@@ -21,7 +21,7 @@ type int = number;
 export default class NikxParser extends Parser {
 	public static readonly T__0 = 1;
 	public static readonly T__1 = 2;
-	public static readonly VAR = 3;
+	public static readonly BOX = 3;
 	public static readonly FUN = 4;
 	public static readonly BooleanLiteral = 5;
 	public static readonly NumberLiteral = 6;
@@ -54,34 +54,34 @@ export default class NikxParser extends Parser {
 	public static readonly RULE_htmlNormalElement = 11;
 	public static readonly RULE_htmlSelfClosingElement = 12;
 	public static readonly RULE_htmlContent = 13;
-	public static readonly literalNames: (string | null)[] = [ null, "'</'", 
-                                                            "'/>'", "'var'", 
-                                                            "'fun'", null, 
-                                                            null, null, 
-                                                            null, "';'", 
-                                                            "','", "'='", 
-                                                            "'('", "')'", 
-                                                            "'{'", "'}'", 
-                                                            "'<'", "'>'", 
+	public static readonly literalNames: (string | null)[] = [ null, "'</'",
+                                                            "'/>'", "'box'",
+                                                            "'fun'", null,
+                                                            null, null,
+                                                            null, "';'",
+                                                            "','", "'='",
+                                                            "'('", "')'",
+                                                            "'{'", "'}'",
+                                                            "'<'", "'>'",
                                                             "'/'" ];
-	public static readonly symbolicNames: (string | null)[] = [ null, null, 
-                                                             null, "VAR", 
-                                                             "FUN", "BooleanLiteral", 
-                                                             "NumberLiteral", 
-                                                             "StringLiteral", 
-                                                             "Identifier", 
-                                                             "SEMICOLON", 
-                                                             "COMMA", "ASSIGN", 
-                                                             "LPAREN", "RPAREN", 
-                                                             "LBRACE", "RBRACE", 
-                                                             "LT", "GT", 
-                                                             "SLASH", "WS", 
+	public static readonly symbolicNames: (string | null)[] = [ null, null,
+                                                             null, "BOX",
+                                                             "FUN", "BooleanLiteral",
+                                                             "NumberLiteral",
+                                                             "StringLiteral",
+                                                             "Identifier",
+                                                             "SEMICOLON",
+                                                             "COMMA", "ASSIGN",
+                                                             "LPAREN", "RPAREN",
+                                                             "LBRACE", "RBRACE",
+                                                             "LT", "GT",
+                                                             "SLASH", "WS",
                                                              "COMMENT" ];
 	// tslint:disable:no-trailing-whitespace
 	public static readonly ruleNames: string[] = [
-		"program", "statement", "variableDeclaration", "functionDeclaration", 
-		"parameterList", "block", "expressionStatement", "functionCall", "argumentList", 
-		"literal", "htmlElement", "htmlNormalElement", "htmlSelfClosingElement", 
+		"program", "statement", "variableDeclaration", "functionDeclaration",
+		"parameterList", "block", "expressionStatement", "functionCall", "argumentList",
+		"literal", "htmlElement", "htmlNormalElement", "htmlSelfClosingElement",
 		"htmlContent",
 	];
 	public get grammarFileName(): string { return "Nikx.g4"; }
@@ -208,7 +208,7 @@ export default class NikxParser extends Parser {
 			this.enterOuterAlt(localctx, 1);
 			{
 			this.state = 43;
-			this.match(NikxParser.VAR);
+			this.match(NikxParser.BOX);
 			this.state = 44;
 			this.match(NikxParser.Identifier);
 			this.state = 47;
@@ -807,8 +807,8 @@ export class VariableDeclarationContext extends ParserRuleContext {
 		super(parent, invokingState);
     	this.parser = parser;
 	}
-	public VAR(): TerminalNode {
-		return this.getToken(NikxParser.VAR, 0);
+	public BOX(): TerminalNode {
+		return this.getToken(NikxParser.BOX, 0);
 	}
 	public Identifier(): TerminalNode {
 		return this.getToken(NikxParser.Identifier, 0);

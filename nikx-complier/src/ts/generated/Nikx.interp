@@ -2,7 +2,7 @@ token literal names:
 null
 '</'
 '/>'
-'var'
+'box'
 'fun'
 null
 null
@@ -25,7 +25,7 @@ token symbolic names:
 null
 null
 null
-VAR
+BOX
 FUN
 BooleanLiteral
 NumberLiteral

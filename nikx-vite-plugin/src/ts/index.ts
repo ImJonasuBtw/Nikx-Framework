@@ -2,7 +2,7 @@ const fileRegex = /\.(nikx)$/
 import {compile} from 'nikx-compiler'
 
 
-export default function basicJavaPlugin() {
+export default function nikxPlugin() {
     return {
         name: 'nikx-vite-plugin',
 
@@ -10,7 +10,8 @@ export default function basicJavaPlugin() {
             if (fileRegex.test(id)) {
                 const compiledCode = compile(src);
                 return {
-                    code: compiledCode,
+                   // code: compiledCode,
+                    code:'console.log("nikx")',
                     //map: null, // provide source map if available
                 }
             }
