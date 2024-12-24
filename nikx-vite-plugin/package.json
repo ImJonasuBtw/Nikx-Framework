@@ -1,18 +1,21 @@
 {
-    "name": "ts-template-package",
-    "version": "1.2.0",
-    "private": true,
-    "author": "Lars Willemsens",
-    "license": "MIT",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
-    "type": "module",
-    "devDependencies": {
-        "typescript": "^5.6.2",
-        "vitest": "^2.1.1"
-    },
-    "scripts": {
-        "build": "tsc",
-        "test": "vitest --run"
-    }
+  "name": "nikx-vite-plugin",
+  "version": "1.0.0",
+  "private": true,
+  "author": "Jonas Nikolopoulos",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "devDependencies": {
+    "typescript": "^5.6.2",
+    "vitest": "^2.1.1"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest --run"
+  },
+  "dependencies": {
+    "nikx-compiler": "file:../nikx-compiler"
+  }
 }

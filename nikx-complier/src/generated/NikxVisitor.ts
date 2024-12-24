@@ -13,10 +13,10 @@ import { ExpressionStatementContext } from "./NikxParser.js";
 import { FunctionCallContext } from "./NikxParser.js";
 import { ArgumentListContext } from "./NikxParser.js";
 import { LiteralContext } from "./NikxParser.js";
-import { JsxElementContext } from "./NikxParser.js";
-import { JsxNormalElementContext } from "./NikxParser.js";
-import { JsxSelfClosingElementContext } from "./NikxParser.js";
-import { JsxContentContext } from "./NikxParser.js";
+import { HtmlElementContext } from "./NikxParser.js";
+import { HtmlNormalElementContext } from "./NikxParser.js";
+import { HtmlSelfClosingElementContext } from "./NikxParser.js";
+import { HtmlContentContext } from "./NikxParser.js";
 
 
 /**
@@ -88,28 +88,28 @@ export default class NikxVisitor<Result> extends ParseTreeVisitor<Result> {
 	 */
 	visitLiteral?: (ctx: LiteralContext) => Result;
 	/**
-	 * Visit a parse tree produced by `NikxParser.jsxElement`.
+	 * Visit a parse tree produced by `NikxParser.htmlElement`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitJsxElement?: (ctx: JsxElementContext) => Result;
+	visitHtmlElement?: (ctx: HtmlElementContext) => Result;
 	/**
-	 * Visit a parse tree produced by `NikxParser.jsxNormalElement`.
+	 * Visit a parse tree produced by `NikxParser.htmlNormalElement`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitJsxNormalElement?: (ctx: JsxNormalElementContext) => Result;
+	visitHtmlNormalElement?: (ctx: HtmlNormalElementContext) => Result;
 	/**
-	 * Visit a parse tree produced by `NikxParser.jsxSelfClosingElement`.
+	 * Visit a parse tree produced by `NikxParser.htmlSelfClosingElement`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitJsxSelfClosingElement?: (ctx: JsxSelfClosingElementContext) => Result;
+	visitHtmlSelfClosingElement?: (ctx: HtmlSelfClosingElementContext) => Result;
 	/**
-	 * Visit a parse tree produced by `NikxParser.jsxContent`.
+	 * Visit a parse tree produced by `NikxParser.htmlContent`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitJsxContent?: (ctx: JsxContentContext) => Result;
+	visitHtmlContent?: (ctx: HtmlContentContext) => Result;
 }
 

@@ -3,7 +3,12 @@ import Node from '../nodes/Node'
 import {
     BlockContext,
     FunctionDeclarationContext,
-    LiteralContext, ParameterListContext,
+    HtmlContentContext,
+    HtmlElementContext,
+    HtmlNormalElementContext,
+    HtmlSelfClosingElementContext,
+    LiteralContext,
+    ParameterListContext,
     ProgramContext,
     StatementContext,
     VariableDeclarationContext
@@ -15,6 +20,7 @@ import StatementNode from "../nodes/StatementNode";
 import FunctionDeclarationNode from "../nodes/FunctionDeclarationNode";
 import ParameterListNode from "../nodes/ParameterListNode";
 import BlockNode from "../nodes/BlockNode";
+import htmlElementNode from "../nodes/htmlElementNode";
 
 export default class NikxAstVisitor extends NikxVisitor<Node> {
 
@@ -41,7 +47,76 @@ export default class NikxAstVisitor extends NikxVisitor<Node> {
         if (ctx.functionDeclaration()) {
             return {type: 'Statement', value: this.visitFunctionDeclaration(ctx.functionDeclaration())};
         }
+
+        if (ctx.htmlElement()) {
+            return {type: 'Statement', value: this.visitHtmlElement(ctx.htmlElement())};
+        }
         return null;
+    }
+
+    visitHtmlElement = (ctx: HtmlElementContext): htmlElementNode => {
+
+        if (ctx.htmlSelfClosingElement()) {
+            return this.visitHtmlSelfClosingElement(ctx.htmlSelfClosingElement());
+        }
+
+        return this.visitHtmlNormalElement(ctx.htmlNormalElement());
+    }
+
+    visitHtmlNormalElement = (ctx: HtmlNormalElementContext): htmlElementNode => {
+        const openTag = ctx.Identifier(0).getText();
+        const closeTag = ctx.Identifier(1).getText();
+
+        if (openTag !== closeTag) {
+            throw new Error('Mismatched tags, big nono');
+        }
+
+        const children: (htmlElementNode | string)[] = [];
+
+        for (const c of ctx.htmlContent_list()) {
+            if (c.htmlElement()) {
+                children.push(this.visitHtmlElement(c.htmlElement()));
+            } else {
+                children.push(c.getText());
+            }
+        }
+
+        return {
+            type: 'htmlElement',
+            tag: openTag,
+            selfClosing: false,
+            children
+        };
+
+    }
+
+    visitHtmlContent = (ctx: HtmlContentContext): Node => {
+        if (ctx.htmlElement()) {
+            return this.visitHtmlElement(ctx.htmlElement());
+        }
+
+        if (ctx.StringLiteral()) {
+            const txt = ctx.StringLiteral()!.getText();
+            return {
+                type: 'Literal',
+                value: txt.slice(1, -1)
+            } as LiteralNode;
+        }
+
+        return {
+            type: 'Literal',
+            value: ''
+        } as LiteralNode;
+
+    }
+
+    visitHtmlSelfClosingElement = (ctx: HtmlSelfClosingElementContext): htmlElementNode => {
+        return {
+            type: 'htmlElement',
+            tag: ctx.Identifier().getText(),
+            selfClosing: true,
+            children: []
+        }
     }
 
     visitVariableDeclaration = (ctx: VariableDeclarationContext): VariableDeclarationNode => {
@@ -88,7 +163,7 @@ export default class NikxAstVisitor extends NikxVisitor<Node> {
     visitFunctionDeclaration = (ctx: FunctionDeclarationContext): FunctionDeclarationNode => {
         const parameters: ParameterListNode = ctx.parameterList()
             ? this.visitParameterList(ctx.parameterList()!)
-            : { type: 'ParameterList', parameters: [] };
+            : {type: 'ParameterList', parameters: []};
 
         const body = this.visitBlock(ctx.block())
         return {

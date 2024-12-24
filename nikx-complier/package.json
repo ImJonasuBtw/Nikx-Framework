@@ -1,8 +1,8 @@
 {
-    "name": "ts-template-package",
-    "version": "1.2.0",
+    "name": "nikx-compiler",
+    "version": "1.0.0",
     "private": true,
-    "author": "Lars Willemsens",
+    "author": "Jonas Nikolopoulos",
     "license": "MIT",
     "main": "dist/ts/index.js",
     "types": "dist/ts/index.d.ts",

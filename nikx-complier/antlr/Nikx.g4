@@ -7,7 +7,7 @@ statement
     : variableDeclaration
     | functionDeclaration
     | expressionStatement
-    | jsxElement
+    | htmlElement
     | ';'
     ;
 
@@ -45,21 +45,21 @@ literal
     | BooleanLiteral
     ;
 
-jsxElement
-    : jsxSelfClosingElement
-    | jsxNormalElement
+htmlElement
+    : htmlSelfClosingElement
+    | htmlNormalElement
     ;
 
-jsxNormalElement
-    : '<' Identifier '>' jsxContent* '</' Identifier '>'
+htmlNormalElement
+    : '<' Identifier '>' htmlContent* '</' Identifier '>'
     ;
 
-jsxSelfClosingElement
+htmlSelfClosingElement
     : '<' Identifier '/>'
     ;
 
-jsxContent
-    : jsxElement
+htmlContent
+    : htmlElement
     | StringLiteral
     ;
 

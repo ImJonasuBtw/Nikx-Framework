@@ -55,10 +55,10 @@ expressionStatement
 functionCall
 argumentList
 literal
-jsxElement
-jsxNormalElement
-jsxSelfClosingElement
-jsxContent
+htmlElement
+htmlNormalElement
+htmlSelfClosingElement
+htmlContent
 
 
 atn:

@@ -50,10 +50,10 @@ export default class NikxParser extends Parser {
 	public static readonly RULE_functionCall = 7;
 	public static readonly RULE_argumentList = 8;
 	public static readonly RULE_literal = 9;
-	public static readonly RULE_jsxElement = 10;
-	public static readonly RULE_jsxNormalElement = 11;
-	public static readonly RULE_jsxSelfClosingElement = 12;
-	public static readonly RULE_jsxContent = 13;
+	public static readonly RULE_htmlElement = 10;
+	public static readonly RULE_htmlNormalElement = 11;
+	public static readonly RULE_htmlSelfClosingElement = 12;
+	public static readonly RULE_htmlContent = 13;
 	public static readonly literalNames: (string | null)[] = [ null, "'</'", 
                                                             "'/>'", "'var'", 
                                                             "'fun'", null, 
@@ -81,8 +81,8 @@ export default class NikxParser extends Parser {
 	public static readonly ruleNames: string[] = [
 		"program", "statement", "variableDeclaration", "functionDeclaration", 
 		"parameterList", "block", "expressionStatement", "functionCall", "argumentList", 
-		"literal", "jsxElement", "jsxNormalElement", "jsxSelfClosingElement", 
-		"jsxContent",
+		"literal", "htmlElement", "htmlNormalElement", "htmlSelfClosingElement", 
+		"htmlContent",
 	];
 	public get grammarFileName(): string { return "Nikx.g4"; }
 	public get literalNames(): (string | null)[] { return NikxParser.literalNames; }
@@ -171,7 +171,7 @@ export default class NikxParser extends Parser {
 				this.enterOuterAlt(localctx, 4);
 				{
 				this.state = 39;
-				this.jsxElement();
+				this.htmlElement();
 				}
 				break;
 			case 9:
@@ -512,9 +512,9 @@ export default class NikxParser extends Parser {
 		return localctx;
 	}
 	// @RuleVersion(0)
-	public jsxElement(): JsxElementContext {
-		let localctx: JsxElementContext = new JsxElementContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 20, NikxParser.RULE_jsxElement);
+	public htmlElement(): HtmlElementContext {
+		let localctx: HtmlElementContext = new HtmlElementContext(this, this._ctx, this.state);
+		this.enterRule(localctx, 20, NikxParser.RULE_htmlElement);
 		try {
 			this.state = 99;
 			this._errHandler.sync(this);
@@ -523,14 +523,14 @@ export default class NikxParser extends Parser {
 				this.enterOuterAlt(localctx, 1);
 				{
 				this.state = 97;
-				this.jsxSelfClosingElement();
+				this.htmlSelfClosingElement();
 				}
 				break;
 			case 2:
 				this.enterOuterAlt(localctx, 2);
 				{
 				this.state = 98;
-				this.jsxNormalElement();
+				this.htmlNormalElement();
 				}
 				break;
 			}
@@ -550,9 +550,9 @@ export default class NikxParser extends Parser {
 		return localctx;
 	}
 	// @RuleVersion(0)
-	public jsxNormalElement(): JsxNormalElementContext {
-		let localctx: JsxNormalElementContext = new JsxNormalElementContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 22, NikxParser.RULE_jsxNormalElement);
+	public htmlNormalElement(): HtmlNormalElementContext {
+		let localctx: HtmlNormalElementContext = new HtmlNormalElementContext(this, this._ctx, this.state);
+		this.enterRule(localctx, 22, NikxParser.RULE_htmlNormalElement);
 		let _la: number;
 		try {
 			this.enterOuterAlt(localctx, 1);
@@ -570,7 +570,7 @@ export default class NikxParser extends Parser {
 				{
 				{
 				this.state = 104;
-				this.jsxContent();
+				this.htmlContent();
 				}
 				}
 				this.state = 109;
@@ -600,9 +600,9 @@ export default class NikxParser extends Parser {
 		return localctx;
 	}
 	// @RuleVersion(0)
-	public jsxSelfClosingElement(): JsxSelfClosingElementContext {
-		let localctx: JsxSelfClosingElementContext = new JsxSelfClosingElementContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 24, NikxParser.RULE_jsxSelfClosingElement);
+	public htmlSelfClosingElement(): HtmlSelfClosingElementContext {
+		let localctx: HtmlSelfClosingElementContext = new HtmlSelfClosingElementContext(this, this._ctx, this.state);
+		this.enterRule(localctx, 24, NikxParser.RULE_htmlSelfClosingElement);
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
@@ -629,9 +629,9 @@ export default class NikxParser extends Parser {
 		return localctx;
 	}
 	// @RuleVersion(0)
-	public jsxContent(): JsxContentContext {
-		let localctx: JsxContentContext = new JsxContentContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 26, NikxParser.RULE_jsxContent);
+	public htmlContent(): HtmlContentContext {
+		let localctx: HtmlContentContext = new HtmlContentContext(this, this._ctx, this.state);
+		this.enterRule(localctx, 26, NikxParser.RULE_htmlContent);
 		try {
 			this.state = 120;
 			this._errHandler.sync(this);
@@ -640,7 +640,7 @@ export default class NikxParser extends Parser {
 				this.enterOuterAlt(localctx, 1);
 				{
 				this.state = 118;
-				this.jsxElement();
+				this.htmlElement();
 				}
 				break;
 			case 7:
@@ -772,8 +772,8 @@ export class StatementContext extends ParserRuleContext {
 	public expressionStatement(): ExpressionStatementContext {
 		return this.getTypedRuleContext(ExpressionStatementContext, 0) as ExpressionStatementContext;
 	}
-	public jsxElement(): JsxElementContext {
-		return this.getTypedRuleContext(JsxElementContext, 0) as JsxElementContext;
+	public htmlElement(): HtmlElementContext {
+		return this.getTypedRuleContext(HtmlElementContext, 0) as HtmlElementContext;
 	}
 	public SEMICOLON(): TerminalNode {
 		return this.getToken(NikxParser.SEMICOLON, 0);
@@ -1130,34 +1130,34 @@ export class LiteralContext extends ParserRuleContext {
 }
 
 
-export class JsxElementContext extends ParserRuleContext {
+export class HtmlElementContext extends ParserRuleContext {
 	constructor(parser?: NikxParser, parent?: ParserRuleContext, invokingState?: number) {
 		super(parent, invokingState);
     	this.parser = parser;
 	}
-	public jsxSelfClosingElement(): JsxSelfClosingElementContext {
-		return this.getTypedRuleContext(JsxSelfClosingElementContext, 0) as JsxSelfClosingElementContext;
+	public htmlSelfClosingElement(): HtmlSelfClosingElementContext {
+		return this.getTypedRuleContext(HtmlSelfClosingElementContext, 0) as HtmlSelfClosingElementContext;
 	}
-	public jsxNormalElement(): JsxNormalElementContext {
-		return this.getTypedRuleContext(JsxNormalElementContext, 0) as JsxNormalElementContext;
+	public htmlNormalElement(): HtmlNormalElementContext {
+		return this.getTypedRuleContext(HtmlNormalElementContext, 0) as HtmlNormalElementContext;
 	}
     public get ruleIndex(): number {
-    	return NikxParser.RULE_jsxElement;
+    	return NikxParser.RULE_htmlElement;
 	}
 	public enterRule(listener: NikxListener): void {
-	    if(listener.enterJsxElement) {
-	 		listener.enterJsxElement(this);
+	    if(listener.enterHtmlElement) {
+	 		listener.enterHtmlElement(this);
 		}
 	}
 	public exitRule(listener: NikxListener): void {
-	    if(listener.exitJsxElement) {
-	 		listener.exitJsxElement(this);
+	    if(listener.exitHtmlElement) {
+	 		listener.exitHtmlElement(this);
 		}
 	}
 	// @Override
 	public accept<Result>(visitor: NikxVisitor<Result>): Result {
-		if (visitor.visitJsxElement) {
-			return visitor.visitJsxElement(this);
+		if (visitor.visitHtmlElement) {
+			return visitor.visitHtmlElement(this);
 		} else {
 			return visitor.visitChildren(this);
 		}
@@ -1165,7 +1165,7 @@ export class JsxElementContext extends ParserRuleContext {
 }
 
 
-export class JsxNormalElementContext extends ParserRuleContext {
+export class HtmlNormalElementContext extends ParserRuleContext {
 	constructor(parser?: NikxParser, parent?: ParserRuleContext, invokingState?: number) {
 		super(parent, invokingState);
     	this.parser = parser;
@@ -1185,29 +1185,29 @@ export class JsxNormalElementContext extends ParserRuleContext {
 	public GT(i: number): TerminalNode {
 		return this.getToken(NikxParser.GT, i);
 	}
-	public jsxContent_list(): JsxContentContext[] {
-		return this.getTypedRuleContexts(JsxContentContext) as JsxContentContext[];
+	public htmlContent_list(): HtmlContentContext[] {
+		return this.getTypedRuleContexts(HtmlContentContext) as HtmlContentContext[];
 	}
-	public jsxContent(i: number): JsxContentContext {
-		return this.getTypedRuleContext(JsxContentContext, i) as JsxContentContext;
+	public htmlContent(i: number): HtmlContentContext {
+		return this.getTypedRuleContext(HtmlContentContext, i) as HtmlContentContext;
 	}
     public get ruleIndex(): number {
-    	return NikxParser.RULE_jsxNormalElement;
+    	return NikxParser.RULE_htmlNormalElement;
 	}
 	public enterRule(listener: NikxListener): void {
-	    if(listener.enterJsxNormalElement) {
-	 		listener.enterJsxNormalElement(this);
+	    if(listener.enterHtmlNormalElement) {
+	 		listener.enterHtmlNormalElement(this);
 		}
 	}
 	public exitRule(listener: NikxListener): void {
-	    if(listener.exitJsxNormalElement) {
-	 		listener.exitJsxNormalElement(this);
+	    if(listener.exitHtmlNormalElement) {
+	 		listener.exitHtmlNormalElement(this);
 		}
 	}
 	// @Override
 	public accept<Result>(visitor: NikxVisitor<Result>): Result {
-		if (visitor.visitJsxNormalElement) {
-			return visitor.visitJsxNormalElement(this);
+		if (visitor.visitHtmlNormalElement) {
+			return visitor.visitHtmlNormalElement(this);
 		} else {
 			return visitor.visitChildren(this);
 		}
@@ -1215,7 +1215,7 @@ export class JsxNormalElementContext extends ParserRuleContext {
 }
 
 
-export class JsxSelfClosingElementContext extends ParserRuleContext {
+export class HtmlSelfClosingElementContext extends ParserRuleContext {
 	constructor(parser?: NikxParser, parent?: ParserRuleContext, invokingState?: number) {
 		super(parent, invokingState);
     	this.parser = parser;
@@ -1227,22 +1227,22 @@ export class JsxSelfClosingElementContext extends ParserRuleContext {
 		return this.getToken(NikxParser.Identifier, 0);
 	}
     public get ruleIndex(): number {
-    	return NikxParser.RULE_jsxSelfClosingElement;
+    	return NikxParser.RULE_htmlSelfClosingElement;
 	}
 	public enterRule(listener: NikxListener): void {
-	    if(listener.enterJsxSelfClosingElement) {
-	 		listener.enterJsxSelfClosingElement(this);
+	    if(listener.enterHtmlSelfClosingElement) {
+	 		listener.enterHtmlSelfClosingElement(this);
 		}
 	}
 	public exitRule(listener: NikxListener): void {
-	    if(listener.exitJsxSelfClosingElement) {
-	 		listener.exitJsxSelfClosingElement(this);
+	    if(listener.exitHtmlSelfClosingElement) {
+	 		listener.exitHtmlSelfClosingElement(this);
 		}
 	}
 	// @Override
 	public accept<Result>(visitor: NikxVisitor<Result>): Result {
-		if (visitor.visitJsxSelfClosingElement) {
-			return visitor.visitJsxSelfClosingElement(this);
+		if (visitor.visitHtmlSelfClosingElement) {
+			return visitor.visitHtmlSelfClosingElement(this);
 		} else {
 			return visitor.visitChildren(this);
 		}
@@ -1250,34 +1250,34 @@ export class JsxSelfClosingElementContext extends ParserRuleContext {
 }
 
 
-export class JsxContentContext extends ParserRuleContext {
+export class HtmlContentContext extends ParserRuleContext {
 	constructor(parser?: NikxParser, parent?: ParserRuleContext, invokingState?: number) {
 		super(parent, invokingState);
     	this.parser = parser;
 	}
-	public jsxElement(): JsxElementContext {
-		return this.getTypedRuleContext(JsxElementContext, 0) as JsxElementContext;
+	public htmlElement(): HtmlElementContext {
+		return this.getTypedRuleContext(HtmlElementContext, 0) as HtmlElementContext;
 	}
 	public StringLiteral(): TerminalNode {
 		return this.getToken(NikxParser.StringLiteral, 0);
 	}
     public get ruleIndex(): number {
-    	return NikxParser.RULE_jsxContent;
+    	return NikxParser.RULE_htmlContent;
 	}
 	public enterRule(listener: NikxListener): void {
-	    if(listener.enterJsxContent) {
-	 		listener.enterJsxContent(this);
+	    if(listener.enterHtmlContent) {
+	 		listener.enterHtmlContent(this);
 		}
 	}
 	public exitRule(listener: NikxListener): void {
-	    if(listener.exitJsxContent) {
-	 		listener.exitJsxContent(this);
+	    if(listener.exitHtmlContent) {
+	 		listener.exitHtmlContent(this);
 		}
 	}
 	// @Override
 	public accept<Result>(visitor: NikxVisitor<Result>): Result {
-		if (visitor.visitJsxContent) {
-			return visitor.visitJsxContent(this);
+		if (visitor.visitHtmlContent) {
+			return visitor.visitHtmlContent(this);
 		} else {
 			return visitor.visitChildren(this);
 		}

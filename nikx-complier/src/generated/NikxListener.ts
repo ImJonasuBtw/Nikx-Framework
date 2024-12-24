@@ -13,10 +13,10 @@ import { ExpressionStatementContext } from "./NikxParser.js";
 import { FunctionCallContext } from "./NikxParser.js";
 import { ArgumentListContext } from "./NikxParser.js";
 import { LiteralContext } from "./NikxParser.js";
-import { JsxElementContext } from "./NikxParser.js";
-import { JsxNormalElementContext } from "./NikxParser.js";
-import { JsxSelfClosingElementContext } from "./NikxParser.js";
-import { JsxContentContext } from "./NikxParser.js";
+import { HtmlElementContext } from "./NikxParser.js";
+import { HtmlNormalElementContext } from "./NikxParser.js";
+import { HtmlSelfClosingElementContext } from "./NikxParser.js";
+import { HtmlContentContext } from "./NikxParser.js";
 
 
 /**
@@ -125,44 +125,44 @@ export default class NikxListener extends ParseTreeListener {
 	 */
 	exitLiteral?: (ctx: LiteralContext) => void;
 	/**
-	 * Enter a parse tree produced by `NikxParser.jsxElement`.
+	 * Enter a parse tree produced by `NikxParser.htmlElement`.
 	 * @param ctx the parse tree
 	 */
-	enterJsxElement?: (ctx: JsxElementContext) => void;
+	enterHtmlElement?: (ctx: HtmlElementContext) => void;
 	/**
-	 * Exit a parse tree produced by `NikxParser.jsxElement`.
+	 * Exit a parse tree produced by `NikxParser.htmlElement`.
 	 * @param ctx the parse tree
 	 */
-	exitJsxElement?: (ctx: JsxElementContext) => void;
+	exitHtmlElement?: (ctx: HtmlElementContext) => void;
 	/**
-	 * Enter a parse tree produced by `NikxParser.jsxNormalElement`.
+	 * Enter a parse tree produced by `NikxParser.htmlNormalElement`.
 	 * @param ctx the parse tree
 	 */
-	enterJsxNormalElement?: (ctx: JsxNormalElementContext) => void;
+	enterHtmlNormalElement?: (ctx: HtmlNormalElementContext) => void;
 	/**
-	 * Exit a parse tree produced by `NikxParser.jsxNormalElement`.
+	 * Exit a parse tree produced by `NikxParser.htmlNormalElement`.
 	 * @param ctx the parse tree
 	 */
-	exitJsxNormalElement?: (ctx: JsxNormalElementContext) => void;
+	exitHtmlNormalElement?: (ctx: HtmlNormalElementContext) => void;
 	/**
-	 * Enter a parse tree produced by `NikxParser.jsxSelfClosingElement`.
+	 * Enter a parse tree produced by `NikxParser.htmlSelfClosingElement`.
 	 * @param ctx the parse tree
 	 */
-	enterJsxSelfClosingElement?: (ctx: JsxSelfClosingElementContext) => void;
+	enterHtmlSelfClosingElement?: (ctx: HtmlSelfClosingElementContext) => void;
 	/**
-	 * Exit a parse tree produced by `NikxParser.jsxSelfClosingElement`.
+	 * Exit a parse tree produced by `NikxParser.htmlSelfClosingElement`.
 	 * @param ctx the parse tree
 	 */
-	exitJsxSelfClosingElement?: (ctx: JsxSelfClosingElementContext) => void;
+	exitHtmlSelfClosingElement?: (ctx: HtmlSelfClosingElementContext) => void;
 	/**
-	 * Enter a parse tree produced by `NikxParser.jsxContent`.
+	 * Enter a parse tree produced by `NikxParser.htmlContent`.
 	 * @param ctx the parse tree
 	 */
-	enterJsxContent?: (ctx: JsxContentContext) => void;
+	enterHtmlContent?: (ctx: HtmlContentContext) => void;
 	/**
-	 * Exit a parse tree produced by `NikxParser.jsxContent`.
+	 * Exit a parse tree produced by `NikxParser.htmlContent`.
 	 * @param ctx the parse tree
 	 */
-	exitJsxContent?: (ctx: JsxContentContext) => void;
+	exitHtmlContent?: (ctx: HtmlContentContext) => void;
 }
 
