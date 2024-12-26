@@ -1,2 +1,3 @@
 box x = 42;
-<div/>
+<button/>
+<button> "Hello" </button>

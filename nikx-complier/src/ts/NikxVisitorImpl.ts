@@ -35,16 +35,12 @@ export default class NikxVisitorImpl {
     }
 
     private generateHtmlElement(node: htmlElementNode): string {
-        const {tag, children, selfClosing} = node;
-
-        if (selfClosing) {
-            return `document.createElement("${tag}")`;
-        }
+        const { tag, children, selfClosing } = node;
 
         const elementVar = `_${tag}_${Math.random().toString(36).substring(7)}`;
         let output = `const ${elementVar} = document.createElement("${tag}");\n`;
 
-        if (children && children.length > 0) {
+        if (!selfClosing && children && children.length > 0) {
             for (const child of children) {
                 if (typeof child === 'string') {
                     output += `${elementVar}.appendChild(document.createTextNode(${JSON.stringify(child)}));\n`;
@@ -55,8 +51,10 @@ export default class NikxVisitorImpl {
             }
         }
 
-        return output + `${elementVar}`;
+        output += `document.getElementById("app").appendChild(${elementVar});\n`;
+        return output;
     }
+
 
 
     private generateFunctionDecl(node: FunctionDeclarationNode): string {

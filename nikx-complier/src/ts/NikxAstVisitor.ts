@@ -64,9 +64,10 @@ export default class NikxAstVisitor extends NikxVisitor<Node> {
     }
 
     visitHtmlNormalElement = (ctx: HtmlNormalElementContext): htmlElementNode => {
-        const openTag = ctx.Identifier(0).getText();
-        const closeTag = ctx.Identifier(1).getText();
+        const openTag = ctx.Identifier(0).getText().toLowerCase();
+        const closeTag = ctx.Identifier(1).getText().toLowerCase();
 
+        console.log(openTag, closeTag);
         if (openTag !== closeTag) {
             throw new Error('Mismatched tags, big nono');
         }

@@ -13,14 +13,20 @@ test('function declaration', (): void => {
 })
 
 test('html element', (): void => {
-        const transpiledCode = compile('<div>"hello"</div>')
-        expect(transpiledCode).toBe('const _div_1 = document.createElement("div");\n_div_1.appendChild(document.createTextNode("hello"));\n_div_1\n');
-    }
-)
+    const transpiledCode = compile('<div>"hello"</div>');
+    const expectedCode = [
+        'const _div_ = document.createElement("div");',
+        '_div_.appendChild(document.createTextNode("\"hello"\"));',
+        'document.getElementById("app").appendChild(_div_);'
+    ].join('\n') + '\n'; // Voeg een extra newline toe aan het einde indien nodig
+
+    expect(transpiledCode).toBe(expectedCode);
+});
+
 
 test('html element with children', (): void => {
         const transpiledCode = compile('<div><span>"hello"</span></div>')
-        expect(transpiledCode).toBe('const _div_1 = document.createElement("div");\nconst _span_2 = document.createElement("span");\n_span_2.appendChild(document.createTextNode("hello"));\n_div_1.appendChild(_span_2);\n_div_1\n');
+        expect(transpiledCode).toBe('const _div_ = document.createElement("div");\nconst _span_2 = document.createElement("span");\n_span_2.appendChild(document.createTextNode("hello"));\n_div_.appendChild(_span_2);\n_div_1\n');
     }
 )
 
