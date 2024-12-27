@@ -1,7 +1,8 @@
 import NikxVisitor from './generated/NikxVisitor.js'
 import Node from './nodes/Node'
 import {
-    BlockContext,
+    ArgumentListContext,
+    BlockContext, ExpressionStatementContext, FunctionCallContext,
     FunctionDeclarationContext,
     HtmlContentContext,
     HtmlElementContext,
@@ -21,6 +22,9 @@ import FunctionDeclarationNode from "./nodes/FunctionDeclarationNode";
 import ParameterListNode from "./nodes/ParameterListNode";
 import BlockNode from "./nodes/BlockNode";
 import htmlElementNode from "./nodes/htmlElementNode";
+import ExpressionStatementNode from "./nodes/ExpressionStatementNode";
+import ArgumentListNode from "./nodes/ArgumentListNode";
+import FunctionCallNode from "./nodes/FunctionCallNode";
 
 export default class NikxAstVisitor extends NikxVisitor<Node> {
 
@@ -51,8 +55,55 @@ export default class NikxAstVisitor extends NikxVisitor<Node> {
         if (ctx.htmlElement()) {
             return {type: 'Statement', value: this.visitHtmlElement(ctx.htmlElement())};
         }
+
+        if (ctx.expressionStatement()) {
+            return {type: 'Statement', value: this.visitExpressionStatement(ctx.expressionStatement())};
+        }
         return null;
     }
+
+    visitExpressionStatement = (ctx: ExpressionStatementContext): ExpressionStatementNode =>{
+        const functionCall = ctx.functionCall();
+        const functionCallNode = this.visitFunctionCall(functionCall);
+
+        return {
+            type: 'ExpressionStatement',
+            expression: functionCallNode
+        }
+
+    }
+
+    visitFunctionCall = (ctx: FunctionCallContext): FunctionCallNode => {
+        const functionName = ctx.Identifier().getText()
+
+        let argListNode: ArgumentListNode = { type: 'ArgumentList', arguments: [] }
+        if (ctx.argumentList()) {
+            argListNode = this.visitArgumentList(ctx.argumentList()!)
+        }
+
+        return {
+            type: 'FunctionCall',
+            functionName,
+            arguments: argListNode
+        }
+    }
+
+    visitArgumentList = (ctx: ArgumentListContext): ArgumentListNode => {
+        const args: LiteralNode[] = []
+
+        const literalContexts = ctx.literal_list()
+        literalContexts.forEach(litCtx => {
+            const litNode = this.visitLiteral(litCtx)
+            args.push(litNode)
+        })
+
+        return {
+            type: 'ArgumentList',
+            arguments: args
+        }
+    }
+
+
 
     visitHtmlElement = (ctx: HtmlElementContext): htmlElementNode => {
 

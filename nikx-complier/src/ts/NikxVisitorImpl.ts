@@ -4,6 +4,9 @@ import VariableDeclarationNode from "./nodes/VariableDeclarationNode";
 import FunctionDeclarationNode from "./nodes/FunctionDeclarationNode";
 import BlockNode from "./nodes/BlockNode";
 import htmlElementNode from "./nodes/htmlElementNode";
+import ExpressionStatementNode from "./nodes/ExpressionStatementNode";
+import FunctionCallNode from "./nodes/FunctionCallNode";
+import ArgumentListNode from "./nodes/ArgumentListNode";
 
 export default class NikxVisitorImpl {
 
@@ -29,13 +32,39 @@ export default class NikxVisitorImpl {
                 return ';';
             case 'htmlElement':
                 return this.generateHtmlElement(node as htmlElementNode);
+            case 'ExpressionStatement':
+                return this.generateExpressionStatement(node as ExpressionStatementNode);
+            case 'FunctionCall':
+                return this.generateFunctionCall(node as FunctionCallNode);
+
+            case 'ArgumentList':
+                return this.generateArgumentList(node as ArgumentListNode);
+
             default:
                 return `/* Unknown node type: ${node.type} */`;
         }
     }
 
+    private generateExpressionStatement(node: ExpressionStatementNode): string {
+        const exprCode = this.generateNode(node.expression)
+        return `${exprCode};`
+    }
+
+    private generateFunctionCall(node: FunctionCallNode): string {
+        const { functionName, arguments: argListNode } = node
+        const argsCode = this.generateNode(argListNode)
+        return `${functionName}(${argsCode})`
+    }
+
+    private generateArgumentList(node: ArgumentListNode): string {
+        const argValues = node.arguments.map(litNode => {
+            return this.literalToJs(litNode.value)
+        })
+        return argValues.join(', ')
+    }
+
     private generateHtmlElement(node: htmlElementNode): string {
-        const { tag, children, selfClosing } = node;
+        const {tag, children, selfClosing} = node;
 
         const elementVar = `_${tag}_${Math.random().toString(36).substring(7)}`;
         let output = `const ${elementVar} = document.createElement("${tag}");\n`;
@@ -54,7 +83,6 @@ export default class NikxVisitorImpl {
         output += `document.getElementById("app").appendChild(${elementVar});\n`;
         return output;
     }
-
 
 
     private generateFunctionDecl(node: FunctionDeclarationNode): string {

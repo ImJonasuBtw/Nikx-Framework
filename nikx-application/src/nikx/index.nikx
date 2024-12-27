@@ -1,3 +1,10 @@
 box x = 42;
 <button/>
-<button> "Hello" </button>
+<p> "Hello" <button> "Hello" </button> </p>
+<p> "World" </p>
+
+fun test(box x, box y) {
+
+}
+
+test("Hello", 42);

@@ -18,10 +18,10 @@ test('html element', (): void => {
         'const _div_ = document.createElement("div");',
         '_div_.appendChild(document.createTextNode("\"hello"\"));',
         'document.getElementById("app").appendChild(_div_);'
-    ].join('\n') + '\n'; // Voeg een extra newline toe aan het einde indien nodig
+    ].join('\n') + '\n';
 
     expect(transpiledCode).toBe(expectedCode);
-});
+})
 
 
 test('html element with children', (): void => {
@@ -45,5 +45,10 @@ test('html self closing with lots of children', (): void => {
         expect(transpiledCode).toBe('const _div_1 = document.createElement("div");\nconst _span_2 = document.createElement("span");\n_div_1.appendChild(_span_2);\nconst _span_3 = document.createElement("span");\n_div_1.appendChild(_span_3);\nconst _span_4 = document.createElement("span");\n_div_1.appendChild(_span_4);\n_div_1\n');
     }
 )
+
+test('function call', (): void => {
+        const transpiledCode = compile('hello("world")')
+        expect(transpiledCode).toBe('hello("world");\n');
+    })
 
 
