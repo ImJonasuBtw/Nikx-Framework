@@ -31,7 +31,12 @@ export default class NikxVisitorImpl {
             case 'StatementSeparator':
                 return ';';
             case 'htmlElement':
-                return this.generateHtmlElement(node as htmlElementNode);
+                const { code, varName } = this.generateHtmlElement(node as htmlElementNode);
+
+                return (
+                    code +
+                    `document.getElementById("app").appendChild(${varName});\n`
+                );
             case 'ExpressionStatement':
                 return this.generateExpressionStatement(node as ExpressionStatementNode);
             case 'FunctionCall':
@@ -63,26 +68,30 @@ export default class NikxVisitorImpl {
         return argValues.join(', ')
     }
 
-    private generateHtmlElement(node: htmlElementNode): string {
-        const {tag, children, selfClosing} = node;
-
+    private generateHtmlElement(node: htmlElementNode): { code: string; varName: string } {
+        const { tag, children, selfClosing } = node;
         const elementVar = `_${tag}_${Math.random().toString(36).substring(7)}`;
-        let output = `const ${elementVar} = document.createElement("${tag}");\n`;
+
+        let code = `const ${elementVar} = document.createElement("${tag}");\n`;
 
         if (!selfClosing && children && children.length > 0) {
             for (const child of children) {
                 if (typeof child === 'string') {
-                    output += `${elementVar}.appendChild(document.createTextNode(${JSON.stringify(child)}));\n`;
+                    code += `${elementVar}.appendChild(document.createTextNode(${JSON.stringify(child)}));\n`;
                 } else {
-                    const childElement = this.generateHtmlElement(child);
-                    output += `${elementVar}.appendChild(${childElement});\n`;
+                    const childResult = this.generateHtmlElement(child as htmlElementNode);
+                    code += childResult.code;
+                    code += `${elementVar}.appendChild(${childResult.varName});\n`;
                 }
             }
         }
 
-        output += `document.getElementById("app").appendChild(${elementVar});\n`;
-        return output;
+        return {
+            code,
+            varName: elementVar
+        };
     }
+
 
 
     private generateFunctionDecl(node: FunctionDeclarationNode): string {

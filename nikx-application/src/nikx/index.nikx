@@ -1,7 +1,13 @@
 box x = 42;
 <button/>
-<p> "Hello" <button> "Hello" </button> </p>
-<p> "World" </p>
+<p> "Hello" </p>
+<button>"tesy"</button>
+<div>
+    <p> "Hello"<button>"tesy"</button> </p>
+    <p> "World" </p>
+    <p> "!" </p>
+    <button/>
+</div>
 
 fun test(box x, box y) {
 
