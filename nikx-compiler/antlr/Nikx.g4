@@ -12,11 +12,11 @@ statement
     ;
 
 variableDeclaration
-    : 'box' Identifier ( '=' literal )? ';'
+    : BOX Identifier ( '=' literal )? ';'
     ;
 
 functionDeclaration
-    : 'fun' Identifier '(' parameterList? ')' block
+    : FUN Identifier '(' parameterList? ')' block
     ;
 
 parameterList

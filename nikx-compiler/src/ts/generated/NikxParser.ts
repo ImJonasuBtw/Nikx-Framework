@@ -11,8 +11,8 @@ import {
 	Token, TokenStream,
 	Interval, IntervalSet
 } from 'antlr4';
-import NikxListener from "./NikxListener";
-import NikxVisitor from "./NikxVisitor";
+import NikxListener from "./NikxListener.js";
+import NikxVisitor from "./NikxVisitor.js";
 
 // for running tests with parameters, TODO: discuss strategy for typed parameters in CI
 // eslint-disable-next-line no-unused-vars
@@ -54,34 +54,34 @@ export default class NikxParser extends Parser {
 	public static readonly RULE_htmlNormalElement = 11;
 	public static readonly RULE_htmlSelfClosingElement = 12;
 	public static readonly RULE_htmlContent = 13;
-	public static readonly literalNames: (string | null)[] = [ null, "'</'",
-                                                            "'/>'", "'box'",
-                                                            "'fun'", null,
-                                                            null, null,
-                                                            null, "';'",
-                                                            "','", "'='",
-                                                            "'('", "')'",
-                                                            "'{'", "'}'",
-                                                            "'<'", "'>'",
+	public static readonly literalNames: (string | null)[] = [ null, "'</'", 
+                                                            "'/>'", "'box'", 
+                                                            "'fun'", null, 
+                                                            null, null, 
+                                                            null, "';'", 
+                                                            "','", "'='", 
+                                                            "'('", "')'", 
+                                                            "'{'", "'}'", 
+                                                            "'<'", "'>'", 
                                                             "'/'" ];
-	public static readonly symbolicNames: (string | null)[] = [ null, null,
-                                                             null, "BOX",
-                                                             "FUN", "BooleanLiteral",
-                                                             "NumberLiteral",
-                                                             "StringLiteral",
-                                                             "Identifier",
-                                                             "SEMICOLON",
-                                                             "COMMA", "ASSIGN",
-                                                             "LPAREN", "RPAREN",
-                                                             "LBRACE", "RBRACE",
-                                                             "LT", "GT",
-                                                             "SLASH", "WS",
+	public static readonly symbolicNames: (string | null)[] = [ null, null, 
+                                                             null, "BOX", 
+                                                             "FUN", "BooleanLiteral", 
+                                                             "NumberLiteral", 
+                                                             "StringLiteral", 
+                                                             "Identifier", 
+                                                             "SEMICOLON", 
+                                                             "COMMA", "ASSIGN", 
+                                                             "LPAREN", "RPAREN", 
+                                                             "LBRACE", "RBRACE", 
+                                                             "LT", "GT", 
+                                                             "SLASH", "WS", 
                                                              "COMMENT" ];
 	// tslint:disable:no-trailing-whitespace
 	public static readonly ruleNames: string[] = [
-		"program", "statement", "variableDeclaration", "functionDeclaration",
-		"parameterList", "block", "expressionStatement", "functionCall", "argumentList",
-		"literal", "htmlElement", "htmlNormalElement", "htmlSelfClosingElement",
+		"program", "statement", "variableDeclaration", "functionDeclaration", 
+		"parameterList", "block", "expressionStatement", "functionCall", "argumentList", 
+		"literal", "htmlElement", "htmlNormalElement", "htmlSelfClosingElement", 
 		"htmlContent",
 	];
 	public get grammarFileName(): string { return "Nikx.g4"; }
