@@ -109,7 +109,7 @@ export default class NikxVisitorImpl {
     private generateVarDecl(node: VariableDeclarationNode): string {
         const {name, value} = node;
         if (value === undefined) {
-            return `const ${name};`;
+            return `const ${name}= undefined;`;
         }
 
         const strVal = this.literalToJs(value);

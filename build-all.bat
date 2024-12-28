@@ -35,9 +35,6 @@ call npm install
 echo Building...
 call npm run build
 
-echo Starting dev server...
-call npm run dev
-
 echo ----------------------
 echo Done!
 echo ----------------------

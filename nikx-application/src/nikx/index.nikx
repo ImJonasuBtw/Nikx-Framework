@@ -1,16 +1,24 @@
+//commment
 box x = 42;
-<button/>
+box message = "Hello World";
+box isActive = true;
+box y;
+
+
+// Normal HTML elements with string literals
 <p> "Hello" </p>
-<button>"tesy"</button>
+<button> "tesy" </button>
+
+// Nested HTML elements
 <div>
-    <p> "Hello"<button>"tesy"</button> </p>
+    <p> "Nested Text:"
+        <button> "inner button" </button>
+    </p>
     <p> "World" </p>
     <p> "!" </p>
     <button/>
 </div>
 
-fun test(box x, box y) {
-
+fun test( arg1,  arg2) {
+    box insideMsg = "Inside test function";
 }
-
-test("Hello", 42);
