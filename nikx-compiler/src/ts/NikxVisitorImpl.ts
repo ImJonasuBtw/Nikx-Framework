@@ -76,8 +76,8 @@ export default class NikxVisitorImpl {
 
         if (!selfClosing && children && children.length > 0) {
             for (const child of children) {
-                if (typeof child === 'string') {
-                    code += `${elementVar}.appendChild(document.createTextNode(${JSON.stringify(child)}));\n`;
+                if (child.type === 'Literal') {
+                    code += `${elementVar}.appendChild(document.createTextNode(${JSON.stringify(child.value)}));\n`;
                 } else {
                     const childResult = this.generateHtmlElement(child as htmlElementNode);
                     code += childResult.code;

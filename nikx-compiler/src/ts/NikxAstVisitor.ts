@@ -123,14 +123,11 @@ export default class NikxAstVisitor extends NikxVisitor<Node> {
             throw new Error('Mismatched tags, big nono');
         }
 
-        const children: (htmlElementNode | string)[] = [];
+        const children: Array<htmlElementNode | LiteralNode> = [];
 
         for (const c of ctx.htmlContent_list()) {
-            if (c.htmlElement()) {
-                children.push(this.visitHtmlElement(c.htmlElement()));
-            } else {
-                children.push(c.getText());
-            }
+            const childNode = this.visitHtmlContent(c);
+            children.push(childNode as htmlElementNode | LiteralNode);
         }
 
         return {
