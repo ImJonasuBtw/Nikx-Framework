@@ -83,9 +83,8 @@ test('should parse function declaration with empty body', () => {
 
 test('should parse function declaration with body', () => {
     const code = `
-      fun print(name) {}
       fun greet(name) {
-        print("name");
+            box message = "Hello";
       }
     `;
     const ast: ProgramNode = parseToAst(code);
@@ -105,15 +104,9 @@ test('should parse function declaration with body', () => {
                             {
                                 type: 'Statement',
                                 value: {
-                                    type: 'ExpressionStatement',
-                                    expression: {
-                                        type: 'FunctionCall',
-                                        functionName: 'print',
-                                        arguments: {
-                                            type: 'ArgumentList',
-                                            arguments: ['name']
-                                        }
-                                    }
+                                    type: 'VariableDeclaration',
+                                    name: 'message',
+                                    value: '"Hello"'
                                 }
                             }
                         ]

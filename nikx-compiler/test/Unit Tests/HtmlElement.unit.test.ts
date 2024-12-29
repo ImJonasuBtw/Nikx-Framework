@@ -46,3 +46,8 @@ test ('should parse html element with text inside', () => {
         ]
     })
 })
+
+test('should throw error if tags do not match', () => {
+    const code = `<div></divd>`;
+    expect(() => parseToAst(code)).toThrowError('Mismatched tags, big nono');
+})

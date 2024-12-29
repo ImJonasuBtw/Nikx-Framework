@@ -2,7 +2,6 @@
 box x = 42;
 box message = "Hello World";
 box isActive = true;
-box y;
 
 
 // Normal HTML elements with string literals
@@ -16,7 +15,7 @@ box y;
     </p>
     <p> "World" </p>
     <p> "!" </p>
-    <button/>
+    <button/>     <button/>     <button/>     <button/>     <button/>    <button/>    <button/>    <button/>
 </div>
 
 fun test( arg1,  arg2) {

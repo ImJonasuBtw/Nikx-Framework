@@ -7,6 +7,7 @@ import htmlElementNode from "./nodes/htmlElementNode";
 import ExpressionStatementNode from "./nodes/ExpressionStatementNode";
 import FunctionCallNode from "./nodes/FunctionCallNode";
 import ArgumentListNode from "./nodes/ArgumentListNode";
+import {nanoid} from "nanoid";
 
 export default class NikxVisitorImpl {
 
@@ -70,7 +71,8 @@ export default class NikxVisitorImpl {
 
     private generateHtmlElement(node: htmlElementNode): { code: string; varName: string } {
         const { tag, children, selfClosing } = node;
-        const elementVar = `_${tag}_${Math.random().toString(36).substring(7)}`;
+        const uniqueId = nanoid();
+        const elementVar = `_${tag}_${uniqueId}`;
 
         let code = `const ${elementVar} = document.createElement("${tag}");\n`;
 

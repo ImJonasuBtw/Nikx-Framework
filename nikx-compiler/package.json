@@ -20,6 +20,7 @@
         "generate": "java -jar C:\\antlr\\antlr-4.13.2-complete.jar -Dlanguage=TypeScript -visitor -o src/ts/generated antlr/Nikx.g4"
     },
     "dependencies": {
-        "antlr4": "^4.13.2"
+        "antlr4": "^4.13.2",
+        "nanoid": "^5.0.9"
     }
 }
