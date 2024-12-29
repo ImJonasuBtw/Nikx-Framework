@@ -4,7 +4,7 @@ import ProgramNode from "../../dist/nodes/ProgramNode";
 
 test('should parse simple function declaration', () => {
     const code = `
-      fun greet(box name) {
+      fun greet(name) {
         // empty body
       }
     `;
@@ -31,7 +31,7 @@ test('should parse simple function declaration', () => {
 
 test('should parse function declaration with multiple parameters', () => {
     const code = `
-      fun greet(box name, box age) {
+      fun greet( name, age) {
         // empty body
       }
     `;
@@ -58,7 +58,7 @@ test('should parse function declaration with multiple parameters', () => {
 
 test('should parse function declaration with empty body', () => {
     const code = `
-      fun greet(box name) {}
+      fun greet(name) {}
     `;
     const ast: ProgramNode = parseToAst(code);
 
@@ -79,4 +79,55 @@ test('should parse function declaration with empty body', () => {
             }
         ]
     })
+})
+
+test('should parse function declaration with body', () => {
+    const code = `
+      fun print(name) {}
+      fun greet(name) {
+        print("name");
+      }
+    `;
+    const ast: ProgramNode = parseToAst(code);
+
+    expect(ast).toEqual({
+        type: 'Program',
+        statements: [
+            {
+                type: 'Statement',
+                value: {
+                    type: 'FunctionDeclaration',
+                    name: 'greet',
+                    parameters: ['name'],
+                    body: {
+                        type: 'Block',
+                        statements: [
+                            {
+                                type: 'Statement',
+                                value: {
+                                    type: 'ExpressionStatement',
+                                    expression: {
+                                        type: 'FunctionCall',
+                                        functionName: 'print',
+                                        arguments: {
+                                            type: 'ArgumentList',
+                                            arguments: ['name']
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        ]
+    })
+})
+
+test('should throw error if function is already declared', () => {
+    const code = `
+      fun greet(name) {}
+      fun greet(name) {}
+    `;
+    expect(() => parseToAst(code)).toThrowError(`Function "greet" is already declared :(`);
 })

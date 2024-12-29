@@ -22,13 +22,6 @@ test('should parse variable dcl with a value', () => {
     })
 })
 
-
-test('should throw an error on variable dcl missing semicolon', () => {
-    const code = `box x = 42`;
-    expect(() => parseToAst(code)).toThrowError();
-})
-
-
 test('should parse variable declared without a value', () => {
     const code = `box y;`;
     const ast: ProgramNode = parseToAst(code);

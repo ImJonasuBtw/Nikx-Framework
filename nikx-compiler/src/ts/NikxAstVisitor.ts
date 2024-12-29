@@ -28,6 +28,12 @@ import FunctionCallNode from "./nodes/FunctionCallNode";
 
 export default class NikxAstVisitor extends NikxVisitor<Node> {
 
+    private declaredFunctions: Set<string>;
+
+    constructor() {
+        super();
+        this.declaredFunctions = new Set();
+    }
 
     visitProgram = (ctx: ProgramContext): ProgramNode => {
         const programNode: ProgramNode = {statements: [], type: 'Program'};
@@ -75,6 +81,10 @@ export default class NikxAstVisitor extends NikxVisitor<Node> {
 
     visitFunctionCall = (ctx: FunctionCallContext): FunctionCallNode => {
         const functionName = ctx.Identifier().getText()
+
+        if (!this.declaredFunctions.has(functionName)) {
+            throw new Error(`You cannot call function "${functionName}", because it is not declared , u dummy :p`);
+        }
 
         let argListNode: ArgumentListNode = { type: 'ArgumentList', arguments: [] }
         if (ctx.argumentList()) {
@@ -210,6 +220,15 @@ export default class NikxAstVisitor extends NikxVisitor<Node> {
     }
 
     visitFunctionDeclaration = (ctx: FunctionDeclarationContext): FunctionDeclarationNode => {
+        const funcName = ctx.Identifier().getText();
+
+        if (this.declaredFunctions.has(funcName)) {
+            throw new Error(`Function "${funcName}" is already declared :(`);
+        }
+
+        this.declaredFunctions.add(funcName);
+
+
         const parameters: ParameterListNode = ctx.parameterList()
             ? this.visitParameterList(ctx.parameterList()!)
             : {type: 'ParameterList', parameters: []};
