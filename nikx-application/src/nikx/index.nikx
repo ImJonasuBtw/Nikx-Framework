@@ -2,22 +2,25 @@
 box x = 42;
 box message = "Hello World";
 box isActive = true;
+box y;
 
 
-// Normal HTML elements with string literals
-<p> "Hello" </p>
-<button> "tesy" </button>
+// Normal HTML elements
+<p> "Hello there i am text" </p>
+<button> "i am a button" </button>
 
 // Nested HTML elements
 <div>
-    <p> "Nested Text:"
-        <button> "inner button" </button>
+    <p> "The following button does nothing:"
+        <button> "I do nothing" </button>
     </p>
-    <p> "World" </p>
-    <p> "!" </p>
+    <p> "Random" </p>
+    <p> "Buttons !" </p>
     <button/>     <button/>     <button/>     <button/>     <button/>    <button/>    <button/>    <button/>
 </div>
 
 fun test( arg1,  arg2) {
     box insideMsg = "Inside test function";
 }
+
+test(1, 2);
