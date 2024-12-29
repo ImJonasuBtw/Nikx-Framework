@@ -4,7 +4,7 @@ import NikxParser from './generated/NikxParser.js'
 import NikxAstVisitor from "./NikxAstVisitor.js";
 import NikxVisitorImpl from "./NikxVisitorImpl.js";
 
-function parseText(input: string) {
+function parseToAst(input: string) {
     const chars = new CharStream(input)
     const lexer = new NikxLexer(chars)
     const tokens = new CommonTokenStream(lexer)
@@ -17,9 +17,9 @@ function parseText(input: string) {
 
 
 function compile(sourceCode: string): string {
-    const ast =parseText(sourceCode);
+    const ast =parseToAst(sourceCode);
     const visitor = new NikxVisitorImpl()
     return visitor.generate(ast);
 }
 
-export {compile}
+export {compile, parseToAst}
