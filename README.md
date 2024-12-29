@@ -19,7 +19,7 @@ Nikx is a very simple frontend framework, similar to React, but much simpler. It
 
 ## Features
 - **Variable Declarations:** Declare variables using the `box` keyword.
-- **Function Declarations:** Define functions with parameters and a function body.
+- **Function Declarations:** Define functions with parameters and a function body using the `fun` .
 - **Literals:** Support for number, boolean, and string literals.
 - **Function Calls:** Invoke functions with arguments.
 - **Nested JSX Expressions:** Create nested HTML-like structures using JSX-like syntax.
