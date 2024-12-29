@@ -71,7 +71,7 @@ export default class NikxVisitorImpl {
 
     private generateHtmlElement(node: htmlElementNode): { code: string; varName: string } {
         const { tag, children, selfClosing } = node;
-        const uniqueId = nanoid();
+        const uniqueId = nanoid().replace(/-/g, '_'); // Replace '-' with '_'
         const elementVar = `_${tag}_${uniqueId}`;
 
         let code = `const ${elementVar} = document.createElement("${tag}");\n`;
