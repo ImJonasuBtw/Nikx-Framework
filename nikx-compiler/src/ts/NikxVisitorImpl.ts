@@ -71,17 +71,17 @@ export default class NikxVisitorImpl {
 
     private generateHtmlElement(node: htmlElementNode): { code: string; varName: string } {
         const { tag, children, selfClosing } = node;
-        const uniqueId = nanoid().replace(/-/g, '_'); // Replace '-' with '_'
+        const uniqueId = nanoid().replace(/-/g, '_');
         const elementVar = `_${tag}_${uniqueId}`;
 
         let code = `const ${elementVar} = document.createElement("${tag}");\n`;
 
         if (!selfClosing && children && children.length > 0) {
             for (const child of children) {
-                if (child.type === 'Literal') {
+                if (typeof child.value === 'string') {
                     code += `${elementVar}.appendChild(document.createTextNode(${JSON.stringify(child.value)}));\n`;
                 } else {
-                    const childResult = this.generateHtmlElement(child as htmlElementNode);
+                    const childResult = this.generateHtmlElement(child.value as htmlElementNode);
                     code += childResult.code;
                     code += `${elementVar}.appendChild(${childResult.varName});\n`;
                 }

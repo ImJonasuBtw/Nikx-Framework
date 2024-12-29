@@ -37,7 +37,7 @@ test ('should parse html element with text inside', () => {
                     tag: "button",
                     children: [
                         {
-                            type: 'Literal',
+                            type: 'htmlContent',
                             value: 'Click me'
                         }
                     ]

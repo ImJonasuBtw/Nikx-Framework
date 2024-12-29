@@ -1,4 +1,4 @@
-import {expect, test, vi, describe, afterEach, it} from "vitest";
+import {expect, vi, describe, afterEach, it} from "vitest";
 import {compile} from "../../src/ts";
 
 vi.mock('nanoid', () => ({
@@ -15,7 +15,7 @@ describe('compile', () => {
         const output = compile(code);
 
         const expectedOutput = `
-      const _div_test-id = document.createElement("div");\ndocument.getElementById("app").appendChild(_div_test-id);
+      const _div_test_id = document.createElement("div");\ndocument.getElementById("app").appendChild(_div_test_id);
     `.trim();
 
         expect(output.trim()).toBe(expectedOutput);
@@ -26,7 +26,7 @@ describe('compile', () => {
         const output = compile(code);
 
         const expectedOutput = `
-            const _div_test-id = document.createElement("div");\nconst _span_test-id = document.createElement("span");\n_div_test-id.appendChild(_span_test-id);\ndocument.getElementById("app").appendChild(_div_test-id);
+            const _div_test_id = document.createElement("div");\nconst _span_test_id = document.createElement("span");\n_div_test_id.appendChild(_span_test_id);\ndocument.getElementById("app").appendChild(_div_test_id);
     `.trim();
 
         expect(output.trim()).toBe(expectedOutput);
@@ -37,7 +37,7 @@ describe('compile', () => {
         const output = compile(code);
 
         const expectedOutput = `
-            const _div_test-id = document.createElement("div");\n_div_test-id.appendChild(document.createTextNode("Hello"));\nconst _span_test-id = document.createElement("span");\n_span_test-id.appendChild(document.createTextNode("World"));\n_div_test-id.appendChild(_span_test-id);\ndocument.getElementById("app").appendChild(_div_test-id);
+            const _div_test_id = document.createElement("div");\n_div_test_id.appendChild(document.createTextNode("Hello"));\nconst _span_test_id = document.createElement("span");\n_span_test_id.appendChild(document.createTextNode("World"));\n_div_test_id.appendChild(_span_test_id);\ndocument.getElementById("app").appendChild(_div_test_id);
     `.trim();
 
             expect(output.trim()).toBe(expectedOutput);

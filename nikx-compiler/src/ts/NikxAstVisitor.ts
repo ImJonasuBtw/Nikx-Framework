@@ -25,6 +25,8 @@ import htmlElementNode from "./nodes/htmlElementNode";
 import ExpressionStatementNode from "./nodes/ExpressionStatementNode";
 import ArgumentListNode from "./nodes/ArgumentListNode";
 import FunctionCallNode from "./nodes/FunctionCallNode";
+import htmlContentNode from "./nodes/htmlContentNode";
+
 
 export default class NikxAstVisitor extends NikxVisitor<Node> {
 
@@ -132,11 +134,11 @@ export default class NikxAstVisitor extends NikxVisitor<Node> {
             throw new Error('Mismatched tags, big nono');
         }
 
-        const children: Array<htmlElementNode | LiteralNode> = [];
+        const children: Array<htmlContentNode> = [];
 
         for (const c of ctx.htmlContent_list()) {
             const childNode = this.visitHtmlContent(c);
-            children.push(childNode as htmlElementNode | LiteralNode);
+            children.push(childNode);
         }
 
         return {
@@ -148,23 +150,26 @@ export default class NikxAstVisitor extends NikxVisitor<Node> {
 
     }
 
-    visitHtmlContent = (ctx: HtmlContentContext): Node => {
+    visitHtmlContent = (ctx: HtmlContentContext): htmlContentNode => {
         if (ctx.htmlElement()) {
-            return this.visitHtmlElement(ctx.htmlElement());
+            return {
+                type: 'htmlContent',
+                value: this.visitHtmlElement(ctx.htmlElement())
+            }
         }
 
         if (ctx.StringLiteral()) {
             const txt = ctx.StringLiteral()!.getText();
             return {
-                type: 'Literal',
+                type: 'htmlContent',
                 value: txt.slice(1, -1)
-            } as LiteralNode;
+            } as htmlContentNode;
         }
 
         return {
-            type: 'Literal',
+            type: 'htmlContent',
             value: ''
-        } as LiteralNode;
+        } as htmlContentNode;
 
     }
 

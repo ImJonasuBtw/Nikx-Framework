@@ -1,9 +1,9 @@
 import Node from './Node'
-import LiteralNode from "./LiteralNode";
+import htmlContentNode from "./htmlContentNode";
 
 export default interface htmlElementNode extends Node {
     type: 'htmlElement';
     tag: string;
     selfClosing: boolean;
-    children: Array<htmlElementNode | LiteralNode>;
+    children: Array<htmlContentNode>;
 }
