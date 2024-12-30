@@ -3,7 +3,7 @@
 
 **Framework Name:** Nikx
 ## Introduction
-Nikx is a very simple frontend framework, similar to React, but much simpler. It was created to expand my knowledge of how React works under the hood. It is very minimal and i doubt it will be useful for any real projects.
+Nikx is a very simple frontend framework, inspired by React, but much simpler. It was created to expand my knowledge of how React works under the hood. It is very minimal and i doubt it will be useful for any real projects.
 
 ## Table of Contents
 - [Features](#features)
