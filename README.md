@@ -181,7 +181,7 @@ run `build-all.bat` script in the root directory
 
 ### Running the project
 
-`npm run start`inside the nikx-application directory
+`npm run dev`inside the nikx-application directory
 
 ### Running the tests
 run `npm run test` inside the nikx-compiler directory
